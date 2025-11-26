@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-lavender-50 via-white to-mint-100 text-gray-800 font-sans;
+    min-height: 100vh;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-lavender-600 to-lavender-400 bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-soft-lg;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-lavender-500 to-lavender-400 text-white px-6 py-3 rounded-2xl font-medium shadow-soft hover:shadow-glow transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-lavender-600 px-6 py-3 rounded-2xl font-medium shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:scale-105 active:scale-95 border border-lavender-200;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-lavender-200 focus:border-lavender-400 focus:ring-4 focus:ring-lavender-100 outline-none transition-all duration-300 bg-white;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-soft-float {
+    animation: softFloat 24s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glowPulse 8s ease-in-out infinite;
+  }
+
+  .animate-intro-pop {
+    animation: introPop 0.8s ease-out;
+  }
+
+  .animate-stream {
+    animation: streamFall linear infinite;
+  }
+
+  .animate-progress {
+    animation: progressSlide 2.6s ease-in-out infinite;
+  }
+
+  .animate-typewriter {
+    animation: typewriter 3s steps(28) forwards;
+  }
+
+  .animate-float-shift {
+    animation: floatShift 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes softFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(40px, -30px, 0) scale(1.05);
+  }
+  66% {
+    transform: translate3d(-30px, 20px, 0) scale(0.98);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleX(0.95);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleX(1.05);
+  }
+}
+
+@keyframes introPop {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes streamFall {
+  0% {
+    transform: translate(-50%, -30%) scale(0.3);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(50%, 110vh) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes progressSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes floatShift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

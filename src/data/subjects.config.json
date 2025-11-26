@@ -1,0 +1,99 @@
+[
+  {
+    "id": "programming-in-c",
+    "subject": "Programming in C",
+    "category": "Programming",
+    "color": "lavender",
+    "icon": "c",
+    "matchers": ["programming in 'c'", "programming in ‘c’"]
+  },
+  {
+    "id": "programming-in-java",
+    "subject": "Programming in Java",
+    "category": "Programming",
+    "color": "mint",
+    "icon": "java",
+    "matchers": ["programming in java"]
+  },
+  {
+    "id": "advanced-java",
+    "subject": "Advanced Java",
+    "category": "Advanced",
+    "color": "sunny",
+    "icon": "java",
+    "matchers": ["advance java", "advanced java"]
+  },
+  {
+    "id": "cloud-computing",
+    "subject": "Cloud Computing",
+    "category": "Advanced",
+    "color": "sunny",
+    "icon": "cloud",
+    "matchers": ["cloud computing"]
+  },
+  {
+    "id": "optimization-techniques",
+    "subject": "Computer Based Optimization Techniques",
+    "category": "Advanced",
+    "color": "mint",
+    "icon": "analytics",
+    "matchers": ["computer based optimization  techniques"]
+  },
+  {
+    "id": "python",
+    "subject": "Programming Using Python",
+    "category": "Programming",
+    "color": "peach",
+    "icon": "python",
+    "matchers": ["programming using python"]
+  },
+  {
+    "id": "dbms",
+    "subject": "Database Management Systems",
+    "category": "Database",
+    "color": "lavender",
+    "icon": "database",
+    "matchers": ["database management systems"]
+  },
+  {
+    "id": "web-tech",
+    "subject": "Web Technologies",
+    "category": "Web",
+    "color": "mint",
+    "icon": "web",
+    "matchers": ["web technologies", "web technologies and php"]
+  },
+  {
+    "id": "computer-graphics",
+    "subject": "Computer Graphics",
+    "category": "Core",
+    "color": "peach",
+    "icon": "graphics",
+    "matchers": ["computer graphics"]
+  },
+  {
+    "id": "computer-fundamentals",
+    "subject": "Computer Fundamentals",
+    "category": "Core",
+    "color": "lavender",
+    "icon": "computer",
+    "matchers": ["computer fundamentals"]
+  },
+  {
+    "id": "english-communication",
+    "subject": "English Communication",
+    "category": "Core",
+    "color": "sunny",
+    "icon": "communication",
+    "matchers": ["english communication"]
+  },
+  {
+    "id": "artificial-intelligence",
+    "subject": "Artificial Intelligence",
+    "category": "Advanced",
+    "color": "lavender",
+    "icon": "analytics",
+    "matchers": ["artificial intelligence"]
+  }
+]
+
