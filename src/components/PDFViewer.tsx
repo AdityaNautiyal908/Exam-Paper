@@ -10,6 +10,21 @@ interface PDFViewerProps {
 
 export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
   const [activeFileId, setActiveFileId] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = (event: MediaQueryListEvent) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+      return () => mediaQuery.removeListener(handleChange);
+    }
+  }, []);
 
   useEffect(() => {
     if (paper) {
@@ -97,14 +112,39 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           </div>
         </div>
 
-        {/* PDF Iframe */}
-        <div className="w-full h-full">
-          <iframe
-            src={activeFile.filePath}
-            className="w-full h-full border-0"
-            title={`${paper.subject} - ${activeFile.label}`}
-          />
-        </div>
+        {/* PDF Area */}
+        {isMobile ? (
+          <div className="w-full h-full px-6 pb-8 flex flex-col items-center justify-center text-center gap-4 bg-gradient-to-b from-white to-lavender-50">
+            <p className="text-gray-600 text-sm">
+              PDF preview is limited on mobile browsers. Tap below to open{' '}
+              <span className="font-medium text-gray-800">{activeFile.label}</span> in your device&apos;s
+              viewer.
+            </p>
+            <a
+              href={activeFile.filePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full max-w-xs btn-primary text-center"
+            >
+              Open PDF
+            </a>
+            <a
+              href={activeFile.filePath}
+              download
+              className="w-full max-w-xs btn-secondary text-center"
+            >
+              Download PDF
+            </a>
+          </div>
+        ) : (
+          <div className="w-full h-full">
+            <iframe
+              src={activeFile.filePath}
+              className="w-full h-full border-0"
+              title={`${paper.subject} - ${activeFile.label}`}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
