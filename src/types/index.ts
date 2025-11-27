@@ -8,7 +8,8 @@ export type SubjectIconKey =
   | 'web'
   | 'graphics'
   | 'computer'
-  | 'communication';
+  | 'communication'
+  | 'security';
 
 export type PaperType = 'final' | 'midterm';
 export type FileType = 'pdf' | 'image';

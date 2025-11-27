@@ -164,7 +164,7 @@
     "subject": "Cyber Security",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "database",
+    "icon": "security",
     "matchers": ["cyber security"]
   },
   {
@@ -174,5 +174,21 @@
     "color": "lavender",
     "icon": "web",
     "matchers": ["net framework and technologies", ".net framework"]
+  },
+  {
+    "id": "data-structures",
+    "subject": "Data Structure using C",
+    "category": "Programming",
+    "color": "mint",
+    "icon": "c",
+    "matchers": ["data structure using 'c'", "data structure using c"]
+  },
+  {
+    "id": "iot",
+    "subject": "Internet of Things",
+    "category": "Advanced",
+    "color": "sunny",
+    "icon": "cloud",
+    "matchers": ["internet of things"]
   }
 ]

@@ -9,7 +9,7 @@ import {
   SiAdobexd,
   SiBookstack,
 } from 'react-icons/si';
-import { MdOutlineComputer } from 'react-icons/md';
+import { MdOutlineComputer, MdSecurity } from 'react-icons/md';
 import { PiLaptopBold } from 'react-icons/pi';
 import { FaJava } from 'react-icons/fa';
 import { SubjectIconKey } from '../types';
@@ -70,6 +70,11 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     Icon: SiBookstack,
     bgClass: 'bg-purple-50 border-purple-100',
     textClass: 'text-purple-500',
+  },
+  security: {
+    Icon: MdSecurity,
+    bgClass: 'bg-red-50 border-red-100',
+    textClass: 'text-red-600',
   },
   default: {
     Icon: PiLaptopBold,
