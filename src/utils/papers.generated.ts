@@ -655,7 +655,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Cyber Security",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "database",
+    "icon": "security",
     "files": [
       {
         "id": "cyber-security-final-sem5-cyber-security-paper-1-pdf-1",
