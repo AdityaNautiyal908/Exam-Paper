@@ -64,9 +64,14 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
 
   const isImage = activeFile.fileType === 'image';
   const isMidterm = paper.paperType === 'midterm';
-  const headerGradient = isMidterm 
-    ? 'from-emerald-700 to-emerald-600' 
-    : 'from-indigo-700 to-indigo-600';
+  
+  const headerColorMap: Record<string, string> = {
+    lavender: 'from-purple-600 to-purple-500',
+    mint: 'from-teal-600 to-teal-500',
+    sunny: 'from-amber-600 to-amber-500',
+    peach: 'from-orange-600 to-orange-500',
+  };
+  const headerGradient = headerColorMap[paper.color] || 'from-purple-600 to-purple-500';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">

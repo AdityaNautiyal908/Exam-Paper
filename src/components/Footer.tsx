@@ -1,4 +1,5 @@
 import { Heart, Github, Mail } from 'lucide-react';
+import VisitorCounter from './VisitorCounter';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,7 @@ export default function Footer() {
             © {currentYear} BCA Question Papers. All rights reserved.
           </p>
 
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 mb-4">
             <a
               href="mailto:nautiyaladitya7@gmail.com"
               className="w-10 h-10 bg-lavender-100 hover:bg-lavender-200 rounded-xl flex items-center justify-center transition-all hover:scale-110"
@@ -34,6 +35,10 @@ export default function Footer() {
             >
               <Github className="w-5 h-5 text-lavender-600" />
             </a>
+          </div>
+
+          <div className="flex justify-center">
+            <VisitorCounter />
           </div>
         </div>
       </div>
