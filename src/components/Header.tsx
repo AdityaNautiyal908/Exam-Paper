@@ -1,4 +1,5 @@
 import { BookOpen, GraduationCap } from 'lucide-react';
+import { useState } from 'react';
 
 interface HeaderProps {
   totalPapers: number;
@@ -12,6 +13,11 @@ export default function Header({ totalPapers }: HeaderProps) {
     day: 'numeric' 
   });
 
+  // Change this to match your logo filename in public/logos/ folder
+  // Examples: '/logos/logo.png', '/logos/bca-logo.svg', '/logos/my-logo.jpg'
+  const logoSrc = '/logos/logo.png';
+  const [logoError, setLogoError] = useState(false);
+
   return (
     <header className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-8 md:p-10 mb-10 shadow-2xl animate-fade-in">
       {/* Decorative elements */}
@@ -21,9 +27,24 @@ export default function Header({ totalPapers }: HeaderProps) {
       
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg border border-white/30">
-              <GraduationCap className="w-7 h-7 text-white" />
+          <div className="flex items-center gap-4">
+            {/* Logo Image - No background, displays as-is */}
+            <div className="w-16 h-16 flex items-center justify-center">
+              {!logoError ? (
+                <img 
+                  src={logoSrc} 
+                  alt="BCA Question Papers Logo" 
+                  className="w-full h-full object-contain"
+                  onError={() => {
+                    setLogoError(true);
+                    console.log('Logo not found at:', logoSrc);
+                  }}
+                />
+              ) : (
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg border border-white/30">
+                  <GraduationCap className="w-7 h-7 text-white" />
+                </div>
+              )}
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight">
