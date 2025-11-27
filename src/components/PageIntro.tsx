@@ -5,7 +5,7 @@ export default function PageIntro() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const hideTimer = window.setTimeout(() => setVisible(false), 3200);
+    const hideTimer = window.setTimeout(() => setVisible(false), 2500);
     return () => window.clearTimeout(hideTimer);
   }, []);
 
@@ -30,31 +30,14 @@ export default function PageIntro() {
       </div>
 
       <div className="relative text-center animate-intro-pop">
-        <div className="mb-6">
-          <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/80 shadow-soft">
-            <span className="inline-flex w-10 h-10 items-center justify-center rounded-2xl bg-lavender-500 text-white animate-float-shift">
-              <BookOpen className="w-5 h-5" />
-            </span>
-            <span className="font-medium text-gray-700 tracking-wide">BCA Papers</span>
-          </span>
-        </div>
+        <span className="inline-flex w-16 h-16 items-center justify-center rounded-2xl bg-lavender-500 text-white animate-float-shift shadow-lg">
+          <BookOpen className="w-8 h-8" />
+        </span>
 
-        <div className="overflow-hidden mb-4 h-14">
-          <div className="animate-typewriter text-3xl md:text-4xl font-display font-semibold text-gray-800 whitespace-nowrap">
-            Ready to ace your exams?
-          </div>
-        </div>
-
-        <p className="text-gray-500 mb-8 max-w-md mx-auto">
-          We are spinning up your personalized study dashboard. Grab a cup of coffee while we lay out
-          the papers.
-        </p>
-
-        <div className="w-64 mx-auto h-1.5 rounded-full bg-lavender-100 overflow-hidden">
+        <div className="mt-8 w-64 mx-auto h-1.5 rounded-full bg-lavender-100 overflow-hidden">
           <div className="h-full bg-gradient-to-r from-lavender-400 via-mint-400 to-sunny-400 animate-progress" />
         </div>
       </div>
     </div>
   );
 }
-

@@ -1,4 +1,4 @@
-import { FileText, Download, ArrowRight } from 'lucide-react';
+import { FileText, Download, ArrowRight, Image } from 'lucide-react';
 import { QuestionPaper } from '../types';
 import SubjectIcon from './SubjectIcon';
 
@@ -18,6 +18,8 @@ const colorMap = {
 export default function SubjectCard({ paper, onClick, index }: SubjectCardProps) {
   const animationDelay = `animate-delay-${Math.min(index * 100, 400)}`;
   const gradientClass = colorMap[paper.color as keyof typeof colorMap];
+  const isMidterm = paper.paperType === 'midterm';
+  const FileIcon = isMidterm ? Image : FileText;
 
   return (
     <div
@@ -46,8 +48,8 @@ export default function SubjectCard({ paper, onClick, index }: SubjectCardProps)
 
         {/* File Info */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <FileText className="w-4 h-4" />
-          <span className="truncate">{paper.files[0].fileName.replace('.pdf', '')}</span>
+          <FileIcon className="w-4 h-4" />
+          <span className="truncate">{paper.files[0].fileName.replace(/\.(pdf|png|jpg|jpeg|webp)$/i, '')}</span>
         </div>
 
         {/* Action Button */}
@@ -62,7 +64,7 @@ export default function SubjectCard({ paper, onClick, index }: SubjectCardProps)
             download
             onClick={(e) => e.stopPropagation()}
             className="w-9 h-9 bg-white/70 hover:bg-white rounded-xl flex items-center justify-center transition-all hover:scale-110"
-            title="Download PDF"
+            title={isMidterm ? "Download Image" : "Download PDF"}
           >
             <Download className="w-4 h-4 text-gray-700" />
           </a>

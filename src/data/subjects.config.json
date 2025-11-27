@@ -5,7 +5,7 @@
     "category": "Programming",
     "color": "lavender",
     "icon": "c",
-    "matchers": ["programming in 'c'", "programming in ‘c’"]
+    "matchers": ["programming in 'c'", "programming in 'c'"]
   },
   {
     "id": "programming-in-java",
@@ -37,7 +37,7 @@
     "category": "Advanced",
     "color": "mint",
     "icon": "analytics",
-    "matchers": ["computer based optimization  techniques"]
+    "matchers": ["computer based optimization techniques", "computer based optimization  techniques"]
   },
   {
     "id": "python",
@@ -94,6 +94,85 @@
     "color": "lavender",
     "icon": "analytics",
     "matchers": ["artificial intelligence"]
+  },
+  {
+    "id": "mfcs",
+    "subject": "Mathematical Foundation of Computer Science",
+    "category": "Core",
+    "color": "peach",
+    "icon": "analytics",
+    "matchers": ["mathematical foundation of computer science"]
+  },
+  {
+    "id": "software-engineering",
+    "subject": "Software Engineering",
+    "category": "Core",
+    "color": "mint",
+    "icon": "computer",
+    "matchers": ["software engineering"]
+  },
+  {
+    "id": "environmental-science",
+    "subject": "Environmental Science",
+    "category": "Core",
+    "color": "mint",
+    "icon": "cloud",
+    "matchers": ["environmental science"]
+  },
+  {
+    "id": "fco",
+    "subject": "Fundamentals of Computer Organization",
+    "category": "Core",
+    "color": "lavender",
+    "icon": "computer",
+    "matchers": ["fundamentals of computer organization"]
+  },
+  {
+    "id": "oops-cpp",
+    "subject": "Object Oriented Programming Using C++",
+    "category": "Programming",
+    "color": "peach",
+    "icon": "c",
+    "matchers": ["object oriented programming using c++"]
+  },
+  {
+    "id": "computer-networks",
+    "subject": "Computer Networks",
+    "category": "Core",
+    "color": "sunny",
+    "icon": "web",
+    "matchers": ["computer network", "computer networks"]
+  },
+  {
+    "id": "os-linux",
+    "subject": "Operating System and Linux",
+    "category": "Core",
+    "color": "lavender",
+    "icon": "computer",
+    "matchers": ["operating system and linux"]
+  },
+  {
+    "id": "theory-of-computation",
+    "subject": "Theory of Computation",
+    "category": "Advanced",
+    "color": "peach",
+    "icon": "analytics",
+    "matchers": ["theory of computation"]
+  },
+  {
+    "id": "cyber-security",
+    "subject": "Cyber Security",
+    "category": "Advanced",
+    "color": "sunny",
+    "icon": "database",
+    "matchers": ["cyber security"]
+  },
+  {
+    "id": "net-framework",
+    "subject": ".NET Framework and Technologies",
+    "category": "Programming",
+    "color": "lavender",
+    "icon": "web",
+    "matchers": ["net framework and technologies", ".net framework"]
   }
 ]
-
