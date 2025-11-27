@@ -24,9 +24,9 @@ export default function VisitorCounter() {
 
   if (loading) {
     return (
-      <div className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-soft text-sm text-gray-600">
-        <Users className="w-4 h-4 text-lavender-500" />
-        <span>Loading...</span>
+      <div className="flex items-center gap-2 px-5 py-2.5 bg-gray-100 rounded-xl shadow-sm text-sm text-gray-600">
+        <Users className="w-4 h-4 text-indigo-500" />
+        <span className="font-medium">Loading...</span>
       </div>
     );
   }
@@ -34,10 +34,11 @@ export default function VisitorCounter() {
   if (count === null) return null;
 
   return (
-    <div className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-soft text-sm text-gray-600">
-      <Users className="w-4 h-4 text-lavender-500" />
+    <div className="flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-md text-sm text-gray-700 border border-indigo-100">
+      <Users className="w-4 h-4 text-indigo-600" />
       <span>
-        <span className="font-semibold text-gray-800">{count.toLocaleString()}</span> visits
+        <span className="font-bold text-gray-900">{count.toLocaleString()}</span>
+        <span className="font-medium ml-1">visits</span>
       </span>
     </div>
   );

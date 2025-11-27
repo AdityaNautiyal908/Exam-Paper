@@ -1,37 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-lavender-50 via-white to-mint-100 text-gray-800 font-sans;
+    @apply bg-gradient-to-br from-slate-50 via-white to-blue-50 text-gray-900 font-sans antialiased;
     min-height: 100vh;
   }
 
   html {
     scroll-behavior: smooth;
   }
+
+  * {
+    @apply border-gray-200;
+  }
 }
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-lavender-600 to-lavender-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-soft-lg;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-lavender-500 to-lavender-400 text-white px-6 py-3 rounded-2xl font-medium shadow-soft hover:shadow-glow transition-all duration-300 hover:scale-105 active:scale-95;
+    @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98];
   }
 
   .btn-secondary {
-    @apply bg-white text-lavender-600 px-6 py-3 rounded-2xl font-medium shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:scale-105 active:scale-95 border border-lavender-200;
+    @apply bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] border-2 border-indigo-200 hover:border-indigo-300;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border-2 border-lavender-200 focus:border-lavender-400 focus:ring-4 focus:ring-lavender-100 outline-none transition-all duration-300 bg-white;
+    @apply w-full px-5 py-3.5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none transition-all duration-300 bg-white text-gray-900 placeholder:text-gray-400 font-medium;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold text-gray-900 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-base text-gray-600 mt-1;
   }
 }
 

@@ -41,54 +41,33 @@ export default function FilterBar({
   setSelectedSemester,
 }: FilterBarProps) {
   return (
-    <div className="mb-8 animate-slide-up animate-delay-100">
+    <div className="mb-10 animate-slide-up animate-delay-100">
       {/* Search Bar */}
-      <div className="relative mb-4">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+      <div className="relative mb-6">
+        <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
         <input
           type="text"
           placeholder="Search for subjects..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="input-field pl-12 text-base"
+          className="input-field pl-14 text-base"
         />
       </div>
 
-      {/* Semester Filter */}
-      <div className="flex items-center gap-3 overflow-x-auto pb-2 mb-3">
-        <div className="flex items-center gap-2 text-gray-600 min-w-fit">
-          <span className="text-sm font-medium">Semester:</span>
-        </div>
-        
-        {semesters.map((sem) => (
-          <button
-            key={sem.value}
-            onClick={() => setSelectedSemester(sem.value)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 min-w-fit ${
-              selectedSemester === sem.value
-                ? 'bg-gradient-to-r from-sunny-400 to-sunny-300 text-white shadow-soft'
-                : 'bg-white text-gray-600 hover:bg-sunny-50 border border-sunny-200'
-            }`}
-          >
-            {sem.label}
-          </button>
-        ))}
-      </div>
-
       {/* Paper Type Filter */}
-      <div className="flex items-center gap-3 overflow-x-auto pb-2 mb-3">
-        <div className="flex items-center gap-2 text-gray-600 min-w-fit">
-          <span className="text-sm font-medium">Type:</span>
+      <div className="flex items-center gap-3 overflow-x-auto pb-3 mb-4">
+        <div className="flex items-center gap-2 text-gray-700 min-w-fit">
+          <span className="text-sm font-semibold">Type:</span>
         </div>
         
         {paperTypes.map((type) => (
           <button
             key={type.value}
             onClick={() => setSelectedPaperType(type.value)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 min-w-fit ${
+            className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 min-w-fit ${
               selectedPaperType === type.value
-                ? 'bg-gradient-to-r from-mint-400 to-mint-300 text-white shadow-soft'
-                : 'bg-white text-gray-600 hover:bg-mint-50 border border-mint-200'
+                ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg'
+                : 'bg-white text-gray-700 hover:bg-emerald-50 border-2 border-gray-200 hover:border-emerald-200 shadow-sm'
             }`}
           >
             {type.label}
@@ -96,21 +75,42 @@ export default function FilterBar({
         ))}
       </div>
 
+      {/* Semester Filter */}
+      <div className="flex items-center gap-3 overflow-x-auto pb-3 mb-4">
+        <div className="flex items-center gap-2 text-gray-700 min-w-fit">
+          <span className="text-sm font-semibold">Semester:</span>
+        </div>
+        
+        {semesters.map((sem) => (
+          <button
+            key={sem.value}
+            onClick={() => setSelectedSemester(sem.value)}
+            className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 min-w-fit ${
+              selectedSemester === sem.value
+                ? 'bg-gradient-to-r from-amber-500 to-amber-400 text-white shadow-lg'
+                : 'bg-white text-gray-700 hover:bg-amber-50 border-2 border-gray-200 hover:border-amber-200 shadow-sm'
+            }`}
+          >
+            {sem.label}
+          </button>
+        ))}
+      </div>
+
       {/* Category Filters */}
-      <div className="flex items-center gap-3 overflow-x-auto pb-2">
-        <div className="flex items-center gap-2 text-gray-600 min-w-fit">
+      <div className="flex items-center gap-3 overflow-x-auto pb-3">
+        <div className="flex items-center gap-2 text-gray-700 min-w-fit">
           <SlidersHorizontal className="w-4 h-4" />
-          <span className="text-sm font-medium">Category:</span>
+          <span className="text-sm font-semibold">Category:</span>
         </div>
         
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category as FilterCategory)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 min-w-fit ${
+            className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 min-w-fit ${
               selectedCategory === category
-                ? 'bg-gradient-to-r from-lavender-500 to-lavender-400 text-white shadow-soft'
-                : 'bg-white text-gray-600 hover:bg-lavender-50 border border-lavender-200'
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
+                : 'bg-white text-gray-700 hover:bg-indigo-50 border-2 border-gray-200 hover:border-indigo-200 shadow-sm'
             }`}
           >
             {category}

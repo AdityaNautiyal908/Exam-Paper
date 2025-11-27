@@ -89,10 +89,10 @@ function App() {
       : [selectedSemester].filter(sem => groupedPapers[sem] && Object.keys(groupedPapers[sem]).length > 0);
 
     return (
-      <div className="mb-12">
-        <div className="flex items-center gap-3 mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
-          <span className={`px-3 py-1 ${badgeColor} rounded-full text-sm font-medium`}>
+      <div className="mb-16">
+        <div className="flex items-center gap-4 mb-8">
+          <h2 className="section-title">{title}</h2>
+          <span className={`px-4 py-1.5 ${badgeColor} rounded-lg text-sm font-bold text-gray-700 shadow-sm`}>
             {fileCount} paper{fileCount !== 1 ? 's' : ''}
           </span>
         </div>
@@ -106,13 +106,13 @@ function App() {
             .reduce((sum, paper) => sum + paper.files.length, 0);
 
           return (
-            <div key={`${title}-sem${semester}`} className="mb-8">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="px-3 py-1 bg-sunny-100 text-sunny-700 rounded-full text-sm font-semibold">
+            <div key={`${title}-sem${semester}`} className="mb-10">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-400 text-white rounded-lg text-sm font-bold shadow-md">
                   Semester {semester}
                 </span>
-                <span className="text-sm text-gray-500">
-                  ({semesterFileCount} paper{semesterFileCount !== 1 ? 's' : ''})
+                <span className="text-sm font-semibold text-gray-600">
+                  {semesterFileCount} paper{semesterFileCount !== 1 ? 's' : ''}
                 </span>
               </div>
 
@@ -125,11 +125,11 @@ function App() {
                 );
 
                 return (
-                  <section key={`${title}-sem${semester}-${category}`} className="mb-6 ml-4 animate-slide-up">
-                    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-4">
+                  <section key={`${title}-sem${semester}-${category}`} className="mb-8 ml-2 animate-slide-up">
+                    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-5">
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-700">{category}</h3>
-                        <p className="text-sm text-gray-500">
+                        <h3 className="text-xl font-bold text-gray-900">{category}</h3>
+                        <p className="text-sm font-medium text-gray-600 mt-1">
                           {categoryFileCount} paper{categoryFileCount !== 1 ? 's' : ''}
                         </p>
                       </div>
@@ -204,12 +204,12 @@ function App() {
             )}
           </>
         ) : (
-          <div className="text-center py-16 animate-fade-in">
-            <div className="w-24 h-24 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="text-center py-20 animate-fade-in">
+            <div className="w-24 h-24 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <span className="text-5xl">📚</span>
             </div>
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No papers found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">No papers found</h3>
+            <p className="text-gray-600 font-medium">Try adjusting your search or filter criteria</p>
           </div>
         )}
 

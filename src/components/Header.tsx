@@ -1,4 +1,4 @@
-import { BookOpen, Sparkles } from 'lucide-react';
+import { BookOpen, GraduationCap } from 'lucide-react';
 
 interface HeaderProps {
   totalPapers: number;
@@ -13,35 +13,41 @@ export default function Header({ totalPapers }: HeaderProps) {
   });
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-br from-lavender-500 via-lavender-400 to-lavender-300 rounded-3xl p-8 md:p-12 mb-8 shadow-soft-lg animate-fade-in">
+    <header className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-8 md:p-10 mb-10 shadow-2xl animate-fade-in">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-lavender-600 opacity-20 rounded-full translate-y-24 -translate-x-24 blur-2xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full -translate-y-48 translate-x-48 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-indigo-400 opacity-10 rounded-full translate-y-36 -translate-x-36 blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-400 opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
       
       <div className="relative z-10">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-            <BookOpen className="w-6 h-6 text-white" />
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg border border-white/30">
+              <GraduationCap className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight">
+                BCA Question Papers
+              </h1>
+              <p className="text-white/80 text-sm font-medium">{currentDate}</p>
+            </div>
           </div>
-          <p className="text-white/90 text-sm font-medium">{currentDate}</p>
         </div>
         
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-3">
-          Hey, Student! 👋
-        </h1>
-        
-        <p className="text-xl md:text-2xl text-white/90 mb-4 font-medium">
-          Ready to ace your exams?
-        </p>
-        
-        <p className="text-white/80 text-base md:text-lg max-w-2xl mb-6">
-          Access previous year BCA question papers anytime, anywhere. 
-          Study smart with our collection of <span className="font-semibold text-white">{totalPapers} papers</span> across all subjects.
-        </p>
-        
-        <div className="flex items-center gap-2 text-white/90">
-          <Sparkles className="w-5 h-5 animate-pulse" />
-          <span className="text-sm font-medium">All the best for your upcoming exams! 🎯</span>
+        <div className="max-w-3xl">
+          <p className="text-xl md:text-2xl text-white/95 mb-4 font-semibold leading-tight">
+            Your Complete Academic Resource Hub
+          </p>
+          
+          <p className="text-white/90 text-base md:text-lg mb-6 leading-relaxed">
+            Access a comprehensive collection of <span className="font-bold text-white">{totalPapers} question papers</span> across all semesters. 
+            Study smarter with organized final and mid-term papers for every subject.
+          </p>
+          
+          <div className="flex items-center gap-3 px-4 py-2.5 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 w-fit">
+            <BookOpen className="w-5 h-5 text-white" />
+            <span className="text-white font-medium text-sm">All papers organized by semester & category</span>
+          </div>
         </div>
       </div>
     </header>
