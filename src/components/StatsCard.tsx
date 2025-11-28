@@ -1,4 +1,6 @@
 import { BookOpen, FileText, Layers, ClipboardList, FileCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
+import confetti from 'canvas-confetti';
 
 interface StatsCardProps {
   totalPapers: number;
@@ -52,22 +54,74 @@ export default function StatsCard({ totalPapers, totalCategories, filteredCount,
     }
   ];
 
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x, y },
+      colors: ['#4F46E5', '#E11D48', '#059669', '#D97706', '#7C3AED'],
+      disableForReducedMotion: true,
+      zIndex: 9999,
+    });
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10 animate-slide-up">
-      {stats.map((stat, index) => (
-        <div
+    <motion.div 
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10"
+    >
+      {stats.map((stat) => (
+        <motion.div
           key={stat.label}
-          className={`${stat.bgColor} rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 ${stat.borderColor} animate-scale-in animate-delay-${index * 100}`}
+          variants={item}
+          whileHover={{ 
+            scale: 1.05,
+            y: -5,
+            transition: { type: "spring", stiffness: 300 }
+          }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleCardClick}
+          className={`${stat.bgColor} rounded-xl p-5 shadow-md hover:shadow-xl transition-colors duration-300 border-2 ${stat.borderColor} cursor-pointer relative overflow-hidden group`}
         >
+          <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+          
           <div className="flex items-center justify-between mb-4">
-            <div className={`w-12 h-12 ${stat.iconBg} rounded-xl flex items-center justify-center shadow-lg`}>
+            <div className={`w-12 h-12 ${stat.iconBg} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
               <stat.icon className="w-6 h-6 text-white" />
             </div>
           </div>
-          <p className="text-3xl font-bold text-gray-900 mb-1.5">{stat.value}</p>
+          <motion.p 
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-3xl font-bold text-gray-900 mb-1.5"
+          >
+            {stat.value}
+          </motion.p>
           <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</p>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

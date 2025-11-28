@@ -5,7 +5,7 @@
     "category": "Programming",
     "color": "lavender",
     "icon": "c",
-    "matchers": ["programming in 'c'", "programming in 'c'"]
+    "matchers": ["programming in 'c'", "programming in 'c'", "programming in c"]
   },
   {
     "id": "programming-in-java",
@@ -133,7 +133,7 @@
     "category": "Programming",
     "color": "peach",
     "icon": "c",
-    "matchers": ["object oriented programming using c++"]
+    "matchers": ["object oriented programming using c++", "object oriented programming using cpp"]
   },
   {
     "id": "computer-networks",

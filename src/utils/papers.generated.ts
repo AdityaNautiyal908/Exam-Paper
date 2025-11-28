@@ -11,22 +11,22 @@ export const finalPapers: QuestionPaper[] = [
       {
         "id": "programming-in-c-final-sem1-programming-in-c-paper-1-pdf-1",
         "label": "Paper 1",
-        "fileName": "PROGRAMMING IN 'C' paper-1.pdf",
-        "filePath": "/assets/final/sem1/PROGRAMMING IN 'C' paper-1.pdf",
+        "fileName": "PROGRAMMING IN C paper-1.pdf",
+        "filePath": "/assets/final/sem1/PROGRAMMING IN C paper-1.pdf",
         "fileType": "pdf"
       },
       {
         "id": "programming-in-c-final-sem1-programming-in-c-paper-2-pdf-2",
         "label": "Paper 2",
-        "fileName": "PROGRAMMING IN 'C' paper-2.pdf",
-        "filePath": "/assets/final/sem1/PROGRAMMING IN 'C' paper-2.pdf",
+        "fileName": "PROGRAMMING IN C paper-2.pdf",
+        "filePath": "/assets/final/sem1/PROGRAMMING IN C paper-2.pdf",
         "fileType": "pdf"
       },
       {
         "id": "programming-in-c-final-sem1-programming-in-c-paper-3-pdf-3",
         "label": "Paper 3",
-        "fileName": "PROGRAMMING IN 'C' paper-3.pdf",
-        "filePath": "/assets/final/sem1/PROGRAMMING IN 'C' paper-3.pdf",
+        "fileName": "PROGRAMMING IN C paper-3.pdf",
+        "filePath": "/assets/final/sem1/PROGRAMMING IN C paper-3.pdf",
         "fileType": "pdf"
       }
     ],
@@ -141,17 +141,17 @@ export const finalPapers: QuestionPaper[] = [
     "icon": "analytics",
     "files": [
       {
-        "id": "mfcs-final-sem2-mathematical-foundation-of-computer-science-paper-2-pdf-1",
-        "label": "Paper 2",
-        "fileName": "MATHEMATICAL FOUNDATION OF COMPUTER SCIENCE paper-2.pdf",
-        "filePath": "/assets/final/sem2/MATHEMATICAL FOUNDATION OF COMPUTER SCIENCE paper-2.pdf",
+        "id": "mfcs-final-sem2-mathematical-foundation-of-computer-science-paper-1-pdf-1",
+        "label": "Paper 1",
+        "fileName": "MATHEMATICAL FOUNDATION OF COMPUTER SCIENCE paper-1.pdf",
+        "filePath": "/assets/final/sem2/MATHEMATICAL FOUNDATION OF COMPUTER SCIENCE paper-1.pdf",
         "fileType": "pdf"
       },
       {
-        "id": "mfcs-final-sem2-mathematical-foundation-of-computer-science-pdf-2",
-        "label": "File 2",
-        "fileName": "Mathematical foundation of Computer Science.pdf",
-        "filePath": "/assets/final/sem2/Mathematical foundation of Computer Science.pdf",
+        "id": "mfcs-final-sem2-mathematical-foundation-of-computer-science-paper-2-pdf-2",
+        "label": "Paper 2",
+        "fileName": "MATHEMATICAL FOUNDATION OF COMPUTER SCIENCE paper-2.pdf",
+        "filePath": "/assets/final/sem2/MATHEMATICAL FOUNDATION OF COMPUTER SCIENCE paper-2.pdf",
         "fileType": "pdf"
       }
     ],
@@ -216,24 +216,24 @@ export const finalPapers: QuestionPaper[] = [
     "icon": "c",
     "files": [
       {
-        "id": "oops-cpp-final-sem2-object-oriented-programming-using-c-paper-1-pdf-1",
+        "id": "oops-cpp-final-sem2-object-oriented-programming-using-cpp-paper-1-pdf-1",
         "label": "Paper 1",
-        "fileName": "OBJECT ORIENTED PROGRAMMING USING C++ paper-1.pdf",
-        "filePath": "/assets/final/sem2/OBJECT ORIENTED PROGRAMMING USING C++ paper-1.pdf",
+        "fileName": "OBJECT ORIENTED PROGRAMMING USING CPP paper-1.pdf",
+        "filePath": "/assets/final/sem2/OBJECT ORIENTED PROGRAMMING USING CPP paper-1.pdf",
         "fileType": "pdf"
       },
       {
-        "id": "oops-cpp-final-sem2-object-oriented-programming-using-c-paper-2-pdf-2",
+        "id": "oops-cpp-final-sem2-object-oriented-programming-using-cpp-paper-2-pdf-2",
         "label": "Paper 2",
-        "fileName": "OBJECT ORIENTED PROGRAMMING USING C++ paper-2.pdf",
-        "filePath": "/assets/final/sem2/OBJECT ORIENTED PROGRAMMING USING C++ paper-2.pdf",
+        "fileName": "OBJECT ORIENTED PROGRAMMING USING CPP paper-2.pdf",
+        "filePath": "/assets/final/sem2/OBJECT ORIENTED PROGRAMMING USING CPP paper-2.pdf",
         "fileType": "pdf"
       },
       {
-        "id": "oops-cpp-final-sem2-object-oriented-programming-using-c-paper-3-pdf-3",
+        "id": "oops-cpp-final-sem2-object-oriented-programming-using-cpp-paper-3-pdf-3",
         "label": "Paper 3",
-        "fileName": "OBJECT ORIENTED PROGRAMMING USING C++ paper-3.pdf",
-        "filePath": "/assets/final/sem2/OBJECT ORIENTED PROGRAMMING USING C++ paper-3.pdf",
+        "fileName": "OBJECT ORIENTED PROGRAMMING USING CPP paper-3.pdf",
+        "filePath": "/assets/final/sem2/OBJECT ORIENTED PROGRAMMING USING CPP paper-3.pdf",
         "fileType": "pdf"
       }
     ],
@@ -250,8 +250,8 @@ export const finalPapers: QuestionPaper[] = [
       {
         "id": "data-structures-final-sem2-data-structure-using-c-pdf-1",
         "label": "File 1",
-        "fileName": "Data structure using 'C'.pdf",
-        "filePath": "/assets/final/sem2/Data structure using 'C'.pdf",
+        "fileName": "Data structure using C.pdf",
+        "filePath": "/assets/final/sem2/Data structure using C.pdf",
         "fileType": "pdf"
       }
     ],
