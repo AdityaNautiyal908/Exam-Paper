@@ -2,6 +2,7 @@ import { X, Download, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-rea
 import { QuestionPaper } from '../types';
 import { useEffect, useMemo, useState } from 'react';
 import SubjectIcon from './SubjectIcon';
+import { getSafeFilePath } from '../utils/filePath';
 
 interface PDFViewerProps {
   paper: QuestionPaper | null;
@@ -73,6 +74,9 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
   };
   const headerGradient = headerColorMap[paper.color] || 'from-purple-600 to-purple-500';
 
+  // Get properly encoded file path
+  const safeFilePath = getSafeFilePath(activeFile.filePath);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
       <div className="relative w-full max-w-6xl h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden animate-scale-in">
@@ -93,7 +97,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           
           <div className="flex items-center gap-2 ml-4">
             <a
-              href={activeFile.filePath}
+              href={safeFilePath}
               download
               className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl flex items-center justify-center transition-all hover:scale-110"
               title="Download"
@@ -102,7 +106,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
             </a>
             
             <a
-              href={activeFile.filePath}
+              href={safeFilePath}
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl flex items-center justify-center transition-all hover:scale-110"
@@ -186,7 +190,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
               )}
               
               <img
-                src={activeFile.filePath}
+                src={safeFilePath}
                 alt={`${paper.subject} - ${activeFile.label}`}
                 className="max-w-full h-auto rounded-xl shadow-lg border border-gray-200"
               />
@@ -201,7 +205,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
               viewer.
             </p>
             <a
-              href={activeFile.filePath}
+              href={safeFilePath}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full max-w-xs btn-primary text-center"
@@ -209,7 +213,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
               Open PDF
             </a>
             <a
-              href={activeFile.filePath}
+              href={safeFilePath}
               download
               className="w-full max-w-xs btn-secondary text-center"
             >
@@ -220,7 +224,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           // Desktop PDF viewer
           <div className="w-full h-full">
             <iframe
-              src={activeFile.filePath}
+              src={safeFilePath}
               className="w-full h-full border-0"
               title={`${paper.subject} - ${activeFile.label}`}
             />
