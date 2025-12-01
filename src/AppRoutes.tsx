@@ -7,6 +7,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 // Lazy load components for better performance
 const Home = lazy(() => import('./App'));
 const SignInPage = lazy(() => import('./components/auth/SignInPage'));
+const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard'));
 
 const AppRoutes = () => {
   const { isLoaded, isSignedIn } = useUser();
@@ -31,6 +32,14 @@ const AppRoutes = () => {
       >
         <Routes location={location} key={location.pathname}>
           <Route path="/sign-in" element={isSignedIn ? <Navigate to="/" replace /> : <SignInPage />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/*"
             element={

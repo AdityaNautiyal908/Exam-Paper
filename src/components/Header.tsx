@@ -1,12 +1,15 @@
-import { BookOpen, GraduationCap } from 'lucide-react';
+import { BookOpen, GraduationCap, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/clerk-react";
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   totalPapers: number;
 }
 
 export default function Header({ totalPapers }: HeaderProps) {
+  const { user } = useUser();
+  const isAdmin = user?.publicMetadata?.role === 'admin';
   const currentDate = new Date().toLocaleDateString('en-US', { 
     weekday: 'long', 
     year: 'numeric', 
@@ -56,6 +59,15 @@ export default function Header({ totalPapers }: HeaderProps) {
           </div>
 
           <div className="flex items-center gap-4">
+            {isAdmin && (
+              <Link 
+                to="/admin"
+                className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-colors backdrop-blur-sm"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                Admin
+              </Link>
+            )}
             <SignedOut>
               <SignInButton mode="modal">
                 <button className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-colors backdrop-blur-sm">
