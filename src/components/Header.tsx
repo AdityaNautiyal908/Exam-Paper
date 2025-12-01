@@ -1,5 +1,6 @@
 import { BookOpen, GraduationCap } from 'lucide-react';
 import { useState } from 'react';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 interface HeaderProps {
   totalPapers: number;
@@ -52,6 +53,25 @@ export default function Header({ totalPapers }: HeaderProps) {
               </h1>
               <p className="text-white/80 text-sm font-medium">{currentDate}</p>
             </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-colors backdrop-blur-sm">
+                  Sign In
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton 
+                appearance={{
+                  elements: {
+                    avatarBox: "w-10 h-10 border-2 border-white/50"
+                  }
+                }}
+              />
+            </SignedIn>
           </div>
         </div>
         
