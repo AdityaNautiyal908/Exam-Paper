@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
-import { Upload, CheckCircle, AlertCircle, FileText } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, FileText, Loader2 } from 'lucide-react';
 import subjectsConfig from '../../data/subjects.config.json';
 import { Semester, PaperType } from '../../types';
+import { useIsAdmin } from '../../utils/auth';
 
 export default function AdminDashboard() {
   const { user } = useUser();
+  const { isAdmin, isLoading } = useIsAdmin();
   const [semester, setSemester] = useState<Semester>(1);
   const [paperType, setPaperType] = useState<PaperType>('final');
   const [subjectId, setSubjectId] = useState(subjectsConfig[0].id);
@@ -13,16 +15,38 @@ export default function AdminDashboard() {
   const [isUploading, setIsUploading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  // Check if user is admin
-  const isAdmin = user?.publicMetadata?.role === 'admin';
+  // Show loading state
+  if (isLoading || !user) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
+        <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
+        <p className="text-gray-600">Loading admin dashboard...</p>
+      </div>
+    );
+  }
 
   if (!isAdmin) {
+    const userRole = user.publicMetadata?.role || 'not set';
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center p-8 bg-red-50 rounded-2xl border border-red-100">
+      <div className="min-h-[60vh] flex items-center justify-center p-4">
+        <div className="text-center p-8 bg-red-50 rounded-2xl border border-red-100 max-w-md w-full">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-red-700 mb-2">Access Denied</h2>
-          <p className="text-red-600">You do not have permission to view this page.</p>
+          <p className="text-red-600 mb-4">You don't have permission to access this page.</p>
+          <div className="bg-white p-4 rounded-lg border border-gray-200 text-left">
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Your role:</span> {userRole}
+            </p>
+            <p className="text-sm text-gray-600 mt-2">
+              <span className="font-medium">Required role:</span> admin
+            </p>
+          </div>
+          <button 
+            onClick={() => window.location.href = '/'}
+            className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+          >
+            Back to Home
+          </button>
         </div>
       </div>
     );

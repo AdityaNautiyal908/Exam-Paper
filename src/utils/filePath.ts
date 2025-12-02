@@ -1,8 +1,18 @@
 /**
  * Encodes a file path to handle special characters in URLs
  * This is especially important for filenames with characters like +, spaces, etc.
+ * 
+ * NOTE: With Supabase storage, the filePath is already a complete public URL,
+ * so we don't need to encode it further. This function now checks if the path
+ * is already a URL and returns it as-is.
  */
 export function encodeFilePath(filePath: string): string {
+  // If it's already a full URL (from Supabase), return as-is
+  if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+    return filePath;
+  }
+
+  // Legacy support for local paths
   // Split the path into parts
   const parts = filePath.split('/');
   
@@ -26,8 +36,15 @@ export function encodeFilePath(filePath: string): string {
 
 /**
  * Gets a safe file path for use in URLs
+ * With Supabase storage, paths are already complete public URLs
  */
 export function getSafeFilePath(filePath: string): string {
+  // If it's already a full URL (from Supabase), return as-is
+  if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+    return filePath;
+  }
+
+  // Legacy support for local paths
   // If the path already starts with /, use it as is but encode the filename
   if (filePath.startsWith('/')) {
     const lastSlash = filePath.lastIndexOf('/');
