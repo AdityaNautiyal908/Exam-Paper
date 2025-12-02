@@ -26,7 +26,7 @@ export default function AdminDashboard() {
   }
 
   if (!isAdmin) {
-    const userRole = user.publicMetadata?.role || 'not set';
+    const userRole = (user.publicMetadata?.role as string) || 'not set';
     return (
       <div className="min-h-[60vh] flex items-center justify-center p-4">
         <div className="text-center p-8 bg-red-50 rounded-2xl border border-red-100 max-w-md w-full">
