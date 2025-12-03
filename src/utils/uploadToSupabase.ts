@@ -1,14 +1,5 @@
 import { supabase, PAPERS_BUCKET } from '../lib/supabase';
 
-/**
- * Generates a filename for the uploaded PDF
- * Format: SUBJECT_NAME_paper-timestamp.pdf
- */
-function generateFileName(subjectName: string): string {
-  const timestamp = Date.now();
-  const sanitizedSubject = subjectName.toUpperCase().replace(/[^A-Z0-9\s]/g, '');
-  return `${sanitizedSubject} paper-${timestamp}.pdf`;
-}
 
 /**
  * Uploads a PDF file to Supabase Storage
@@ -36,11 +27,30 @@ export async function uploadPDFToSupabase(
       return { success: false, error: 'File size must be less than 10MB' };
     }
 
-    // Generate filename
-    const fileName = generateFileName(subjectName);
+    // Get existing files to determine the next number
+    const folderPath = `${paperType}/sem${semester}`;
+    const { data: existingFiles, error: listError } = await supabase.storage
+      .from(PAPERS_BUCKET)
+      .list(folderPath, {
+        limit: 1000,
+        offset: 0,
+      });
+
+    if (listError) {
+      console.error('[upload] Error listing files:', listError);
+    }
+
+    // Count existing files for this subject
+    const sanitizedSubject = subjectName.toUpperCase().replace(/[^A-Z0-9\s]/g, '');
+    const subjectFiles = existingFiles?.filter(f => 
+      f.name.toLowerCase().includes(sanitizedSubject.toLowerCase())
+    ) || [];
     
-    // Construct the storage path: final/sem1/SUBJECT_NAME_paper-timestamp.pdf
-    const filePath = `${paperType}/sem${semester}/${fileName}`;
+    const nextNumber = subjectFiles.length + 1;
+    const fileName = `${sanitizedSubject} paper-${nextNumber}.pdf`;
+    
+    // Construct the storage path: final/sem1/SUBJECT_NAME_paper-1.pdf
+    const filePath = `${folderPath}/${fileName}`;
 
     console.log('[upload] Uploading to:', filePath);
 
