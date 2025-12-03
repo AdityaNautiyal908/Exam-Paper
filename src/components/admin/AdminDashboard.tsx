@@ -4,6 +4,8 @@ import { Upload, CheckCircle, AlertCircle, FileText, Loader2 } from 'lucide-reac
 import subjectsConfig from '../../data/subjects.config.json';
 import { Semester, PaperType } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
+import { uploadPDFToSupabase } from '../../utils/uploadToSupabase';
+
 
 export default function AdminDashboard() {
   const { user } = useUser();
@@ -74,31 +76,39 @@ export default function AdminDashboard() {
     setIsUploading(true);
     setStatus(null);
 
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('semester', semester.toString());
-    formData.append('type', paperType);
-    formData.append('subject', subjectId);
-
     try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+      // Get subject name from config
+      const subject = subjectsConfig.find(s => s.id === subjectId);
+      if (!subject) {
+        throw new Error('Subject not found');
+      }
+      
+      // Upload to Supabase Storage
+      const result = await uploadPDFToSupabase(
+        file,
+        semester,
+        paperType,
+        subject.subject
+      );
 
-      if (!response.ok) {
-        throw new Error('Upload failed');
+      if (!result.success) {
+        throw new Error(result.error || 'Upload failed');
       }
 
-      setStatus({ type: 'success', message: 'Paper uploaded successfully!' });
+      setStatus({ 
+        type: 'success', 
+        message: `Paper uploaded successfully! File: ${file.name}. Run 'npm run sync:papers' to update the paper list.` 
+      });
       setFile(null);
+      
       // Reset file input
       const fileInput = document.getElementById('file-upload') as HTMLInputElement;
       if (fileInput) fileInput.value = '';
       
     } catch (error) {
       console.error(error);
-      setStatus({ type: 'error', message: 'Failed to upload paper. Please try again.' });
+      const errorMessage = error instanceof Error ? error.message : 'Failed to upload paper. Please try again.';
+      setStatus({ type: 'error', message: errorMessage });
     } finally {
       setIsUploading(false);
     }

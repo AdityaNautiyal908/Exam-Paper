@@ -1,8 +1,10 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import AppRoutes from './AppRoutes';
 import './index.css';
 import { ClerkProvider } from '@clerk/clerk-react';
+import { BrowserRouter } from 'react-router-dom';
+
 
 // Error Boundary Component
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
@@ -84,7 +86,9 @@ const initApp = async () => {
             afterSignOutUrl="/"
             appearance={clerkAppearance}
           >
-            <App />
+            <BrowserRouter>
+              <AppRoutes />
+            </BrowserRouter>
           </ClerkProvider>
         </ErrorBoundary>
       </React.StrictMode>

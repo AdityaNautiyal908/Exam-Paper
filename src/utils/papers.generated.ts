@@ -481,6 +481,13 @@ export const finalPapers: QuestionPaper[] = [
         "fileName": "THEORY OF COMPUTATION paper-1.pdf",
         "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem4/THEORY%20OF%20COMPUTATION%20paper-1.pdf",
         "fileType": "pdf"
+      },
+      {
+        "id": "theory-of-computation-final-sem4-theory-of-computation-paper-1764767201453-pdf-2",
+        "label": "Paper 1764767201453",
+        "fileName": "THEORY OF COMPUTATION paper-1764767201453.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem4/THEORY%20OF%20COMPUTATION%20paper-1764767201453.pdf",
+        "fileType": "pdf"
       }
     ],
     "paperType": "final",
