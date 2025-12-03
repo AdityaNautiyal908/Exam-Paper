@@ -214,13 +214,29 @@ export function usePapers() {
     }
 
     loadPapers();
+
+    // Listen for cache clear events (works in same tab)
+    const handleCacheCleared = () => {
+      console.log('[usePapers] Cache cleared detected, reloading papers...');
+      setIsLoading(true);
+      loadPapers();
+    };
+
+    window.addEventListener('papers-cache-cleared', handleCacheCleared);
+
+    return () => {
+      window.removeEventListener('papers-cache-cleared', handleCacheCleared);
+    };
   }, []);
 
   return { finalPapers, midtermPapers, isLoading, error };
 }
 
-// Export function to clear cache (call after admin upload)
+// Export function to clear cache (call after admin upload/delete/replace)
 export function clearPapersCache() {
   localStorage.removeItem(CACHE_KEY);
   console.log('[usePapers] Cache cleared');
+  
+  // Dispatch custom event to trigger reload in all tabs (including current)
+  window.dispatchEvent(new CustomEvent('papers-cache-cleared'));
 }

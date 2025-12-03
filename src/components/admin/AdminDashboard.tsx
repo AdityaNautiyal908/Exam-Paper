@@ -6,6 +6,7 @@ import { Semester, PaperType } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
 import { uploadPDFToSupabase } from '../../utils/uploadToSupabase';
 import { clearPapersCache } from '../../hooks/usePapers';
+import PaperManager from './PaperManager';
 
 
 export default function AdminDashboard() {
@@ -17,6 +18,21 @@ export default function AdminDashboard() {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  // Filter subjects based on selected semester
+  const availableSubjects = subjectsConfig.filter(subject => 
+    subject.semesters && subject.semesters.includes(semester)
+  );
+
+  // Reset subject selection when semester changes
+  const handleSemesterChange = (newSemester: Semester) => {
+    setSemester(newSemester);
+    // Reset to first subject of new semester
+    const firstSubject = subjectsConfig.find(s => s.semesters && s.semesters.includes(newSemester));
+    if (firstSubject) {
+      setSubjectId(firstSubject.id);
+    }
+  };
 
   // Show loading state
   if (isLoading || !user) {
@@ -138,7 +154,7 @@ export default function AdminDashboard() {
               <label className="block text-sm font-medium text-gray-700 mb-2">Semester</label>
               <select
                 value={semester}
-                onChange={(e) => setSemester(Number(e.target.value) as Semester)}
+                onChange={(e) => handleSemesterChange(Number(e.target.value) as Semester)}
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
               >
                 {[1, 2, 3, 4, 5, 6].map((sem) => (
@@ -169,7 +185,7 @@ export default function AdminDashboard() {
               onChange={(e) => setSubjectId(e.target.value)}
               className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             >
-              {subjectsConfig.map((subject) => (
+              {availableSubjects.map((subject) => (
                 <option key={subject.id} value={subject.id}>
                   {subject.subject}
                 </option>
@@ -233,6 +249,30 @@ export default function AdminDashboard() {
             {isUploading ? 'Uploading...' : 'Upload Paper'}
           </button>
         </form>
+      </div>
+
+      {/* Manage Existing Papers Section */}
+      <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-3 bg-purple-100 rounded-xl">
+            <FileText className="w-6 h-6 text-purple-600" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">Manage Existing Papers</h2>
+            <p className="text-gray-500 text-sm">View, replace, or delete uploaded papers</p>
+          </div>
+        </div>
+
+        <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
+          <p className="text-sm text-blue-800">
+            <strong>Viewing papers for:</strong> {paperType === 'final' ? 'Final Term' : 'Mid-Term'} - Semester {semester}
+          </p>
+          <p className="text-xs text-blue-600 mt-1">
+            Change the semester or paper type above to view different papers
+          </p>
+        </div>
+
+        <PaperManager semester={semester} paperType={paperType} />
       </div>
     </div>
   );
