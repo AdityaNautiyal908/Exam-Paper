@@ -7,10 +7,15 @@ import PDFViewer from './components/PDFViewer';
 import Footer from './components/Footer';
 import AnimatedBackdrop from './components/AnimatedBackdrop';
 import PageIntro from './components/PageIntro';
-import { finalPapers, midtermPapers, categories } from './utils/papers';
+import { usePapers } from './hooks/usePapers';
+import { categories } from './utils/papers';
 import { QuestionPaper, FilterCategory, PaperType, Semester } from './types';
+import { Loader2 } from 'lucide-react';
 
 function App() {
+  // Load papers dynamically from Supabase
+  const { finalPapers, midtermPapers, isLoading, error } = usePapers();
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<FilterCategory>('All');
   const [selectedPaper, setSelectedPaper] = useState<QuestionPaper | null>(null);
@@ -20,11 +25,11 @@ function App() {
   // Total counts
   const totalFinalCount = useMemo(
     () => finalPapers.reduce((sum, subject) => sum + subject.files.length, 0),
-    []
+    [finalPapers]
   );
   const totalMidtermCount = useMemo(
     () => midtermPapers.reduce((sum, subject) => sum + subject.files.length, 0),
-    []
+    [midtermPapers]
   );
   const totalFileCount = totalFinalCount + totalMidtermCount;
 
@@ -156,6 +161,36 @@ function App() {
   };
 
   const hasResults = filteredFinalPapers.length > 0 || filteredMidtermPapers.length > 0;
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <Loader2 className="h-12 w-12 animate-spin text-blue-600 mb-4" />
+        <p className="text-gray-700 font-medium">Loading papers from Supabase...</p>
+        <p className="text-gray-500 text-sm mt-2">This may take a moment on first load</p>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4">
+        <div className="text-center max-w-md">
+          <div className="text-red-600 text-5xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Failed to Load Papers</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen overflow-hidden">

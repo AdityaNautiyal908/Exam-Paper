@@ -5,6 +5,7 @@ import subjectsConfig from '../../data/subjects.config.json';
 import { Semester, PaperType } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
 import { uploadPDFToSupabase } from '../../utils/uploadToSupabase';
+import { clearPapersCache } from '../../hooks/usePapers';
 
 
 export default function AdminDashboard() {
@@ -95,9 +96,12 @@ export default function AdminDashboard() {
         throw new Error(result.error || 'Upload failed');
       }
 
+      // Clear cache so new papers appear on next load
+      clearPapersCache();
+
       setStatus({ 
         type: 'success', 
-        message: `Paper uploaded successfully! File: ${file.name}. Run 'npm run sync:papers' to update the paper list.` 
+        message: `Paper uploaded successfully! Refresh the page to see it in the list.` 
       });
       setFile(null);
       
