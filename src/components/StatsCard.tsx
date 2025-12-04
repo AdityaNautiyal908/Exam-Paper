@@ -92,10 +92,15 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
       initial={shouldAnimate ? "hidden" : false}
       animate={shouldAnimate ? "show" : false}
       whileHover={{ 
-        scale: 1.02,
-        transition: { type: "spring", stiffness: 300 }
+        scale: 1.05,
+        y: -5,
+        transition: { type: "spring", stiffness: 300, damping: 15 }
       }}
-      whileTap={{ scale: 0.98 }}
+      whileTap={{ 
+        scale: 0.95,
+        scaleY: 0.92,
+        transition: { duration: 0.1 }
+      }}
       onClick={handleCardClick}
       className={`${stat.bgColor} rounded-2xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${stat.borderColor} cursor-pointer relative overflow-hidden group`}
     >

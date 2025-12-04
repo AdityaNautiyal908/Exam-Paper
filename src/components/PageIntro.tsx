@@ -1,14 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { GraduationCap, FileText, BookOpen } from 'lucide-react';
 
 export default function PageIntro() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
+    // Check if we navigated from another route (like admin)
+    // location.state will be set when using navigate() from React Router
+    const isNavigatingBack = location.state?.fromRoute;
+    
+    if (isNavigatingBack) {
+      // Skip intro if navigating from another page
+      setVisible(false);
+      return;
+    }
+
+    // Show intro for fresh page loads (F5, direct URL, etc.)
+    setVisible(true);
+    
+    // Hide after 3.5 seconds
     const hideTimer = window.setTimeout(() => setVisible(false), 3500);
     return () => window.clearTimeout(hideTimer);
-  }, []);
+  }, [location]);
 
   if (!visible) return null;
 

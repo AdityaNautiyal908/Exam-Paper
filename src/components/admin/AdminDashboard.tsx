@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
-import { Upload, CheckCircle, AlertCircle, FileText, Loader2 } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, FileText, Loader2, ArrowLeft } from 'lucide-react';
 import subjectsConfig from '../../data/subjects.config.json';
 import { Semester, PaperType } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
@@ -12,6 +13,7 @@ import PaperManager from './PaperManager';
 export default function AdminDashboard() {
   const { user } = useUser();
   const { isAdmin, isLoading } = useIsAdmin();
+  const navigate = useNavigate();
   const [semester, setSemester] = useState<Semester>(1);
   const [paperType, setPaperType] = useState<PaperType>('final');
   const [subjectId, setSubjectId] = useState(subjectsConfig[0].id);
@@ -137,6 +139,15 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate('/', { state: { fromRoute: 'admin' } })}
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="font-medium">Back to Home</span>
+        </button>
+
         <div className="flex items-center gap-4 mb-8">
           <div className="p-3 bg-indigo-100 rounded-xl">
             <Upload className="w-6 h-6 text-indigo-600" />
