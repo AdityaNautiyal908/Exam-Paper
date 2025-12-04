@@ -12,7 +12,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.17-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-Storage-3ecf8e?style=for-the-badge&logo=supabase)](https://supabase.com/)
 
-[Live Demo](https://your-demo-link.vercel.app) • [Report Bug](https://github.com/AdityaNautiyal908/Exam-Paper/issues) • [Request Feature](https://github.com/AdityaNautiyal908/Exam-Paper/issues)
+[Live Demo](https://exam-paper-six.vercel.app/) • [Report Bug](https://github.com/AdityaNautiyal908/Exam-Paper/issues) • [Request Feature](https://github.com/AdityaNautiyal908/Exam-Paper/issues)
 
 </div>
 
