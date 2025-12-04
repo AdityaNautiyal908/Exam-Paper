@@ -13,6 +13,29 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
   const [activeFileId, setActiveFileId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Function to force download instead of opening in browser
+  const handleDownload = async (url: string, filename: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the blob URL
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error('Download failed:', error);
+      // Fallback: open in new tab if download fails
+      window.open(url, '_blank');
+    }
+  };
+
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
     const handleChange = (event: MediaQueryListEvent) => setIsMobile(event.matches);
@@ -96,14 +119,13 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           </div>
           
           <div className="flex items-center gap-2 ml-4">
-            <a
-              href={safeFilePath}
-              download
+            <button
+              onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
               className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl flex items-center justify-center transition-all hover:scale-110"
               title="Download"
             >
               <Download className="w-5 h-5" />
-            </a>
+            </button>
             
             <a
               href={safeFilePath}
@@ -212,13 +234,12 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
             >
               Open PDF
             </a>
-            <a
-              href={safeFilePath}
-              download
+            <button
+              onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
               className="w-full max-w-xs btn-secondary text-center"
             >
               Download PDF
-            </a>
+            </button>
           </div>
         ) : (
           // Desktop PDF viewer
