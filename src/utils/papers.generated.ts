@@ -248,10 +248,17 @@ export const finalPapers: QuestionPaper[] = [
     "icon": "c",
     "files": [
       {
-        "id": "data-structures-final-sem2-data-structure-using-c-pdf-1",
-        "label": "File 1",
-        "fileName": "Data structure using C.pdf",
-        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem2/Data%20structure%20using%20C.pdf",
+        "id": "data-structures-final-sem2-data-structure-using-c-paper-1-pdf-1",
+        "label": "Paper 1",
+        "fileName": "DATA STRUCTURE USING C paper-1.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem2/DATA%20STRUCTURE%20USING%20C%20paper-1.pdf",
+        "fileType": "pdf"
+      },
+      {
+        "id": "data-structures-final-sem2-data-structure-using-c-paper-2-pdf-2",
+        "label": "Paper 2",
+        "fileName": "DATA STRUCTURE USING C paper-2.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem2/DATA%20STRUCTURE%20USING%20C%20paper-2.pdf",
         "fileType": "pdf"
       }
     ],
@@ -341,24 +348,6 @@ export const finalPapers: QuestionPaper[] = [
         "label": "Paper 2",
         "fileName": "DATABASE MANAGEMENT SYSTEMS paper-2.pdf",
         "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem3/DATABASE%20MANAGEMENT%20SYSTEMS%20paper-2.pdf",
-        "fileType": "pdf"
-      }
-    ],
-    "paperType": "final",
-    "semester": 3
-  },
-  {
-    "id": "theory-of-computation-final-sem3",
-    "subject": "Theory of Computation",
-    "category": "Advanced",
-    "color": "peach",
-    "icon": "analytics",
-    "files": [
-      {
-        "id": "theory-of-computation-final-sem3-theory-of-computation-pdf-1",
-        "label": "File 1",
-        "fileName": "Theory of Computation.pdf",
-        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem3/Theory%20of%20Computation.pdf",
         "fileType": "pdf"
       }
     ],
@@ -483,10 +472,24 @@ export const finalPapers: QuestionPaper[] = [
         "fileType": "pdf"
       },
       {
-        "id": "theory-of-computation-final-sem4-theory-of-computation-paper-1764767201453-pdf-2",
-        "label": "Paper 1764767201453",
-        "fileName": "THEORY OF COMPUTATION paper-1764767201453.pdf",
-        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem4/THEORY%20OF%20COMPUTATION%20paper-1764767201453.pdf",
+        "id": "theory-of-computation-final-sem4-theory-of-computation-paper-2-pdf-2",
+        "label": "Paper 2",
+        "fileName": "THEORY OF COMPUTATION paper-2.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem4/THEORY%20OF%20COMPUTATION%20paper-2.pdf",
+        "fileType": "pdf"
+      },
+      {
+        "id": "theory-of-computation-final-sem4-theory-of-computation-paper-3-pdf-3",
+        "label": "Paper 3",
+        "fileName": "THEORY OF COMPUTATION paper-3.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem4/THEORY%20OF%20COMPUTATION%20paper-3.pdf",
+        "fileType": "pdf"
+      },
+      {
+        "id": "theory-of-computation-final-sem4-theory-of-computation-paper-4-pdf-4",
+        "label": "Paper 4",
+        "fileName": "THEORY OF COMPUTATION paper-4.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem4/THEORY%20OF%20COMPUTATION%20paper-4.pdf",
         "fileType": "pdf"
       }
     ],
@@ -537,6 +540,13 @@ export const finalPapers: QuestionPaper[] = [
         "label": "Paper 3",
         "fileName": "ADVANCE JAVA paper-3.pdf",
         "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem5/ADVANCE%20JAVA%20paper-3.pdf",
+        "fileType": "pdf"
+      },
+      {
+        "id": "advanced-java-final-sem5-advanced-java-paper-1-pdf-4",
+        "label": "Paper 1",
+        "fileName": "ADVANCED JAVA paper-1.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem5/ADVANCED%20JAVA%20paper-1.pdf",
         "fileType": "pdf"
       }
     ],
@@ -701,6 +711,13 @@ export const finalPapers: QuestionPaper[] = [
         "label": "Paper 2",
         "fileName": "NET FRAMEWORK AND TECHNOLOGIES paper-2.pdf",
         "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem6/NET%20FRAMEWORK%20AND%20TECHNOLOGIES%20paper-2.pdf",
+        "fileType": "pdf"
+      },
+      {
+        "id": "net-framework-final-sem6-net-framework-and-technologies-paper-3-pdf-3",
+        "label": "Paper 3",
+        "fileName": "NET FRAMEWORK AND TECHNOLOGIES paper-3.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/final/sem6/NET%20FRAMEWORK%20AND%20TECHNOLOGIES%20paper-3.pdf",
         "fileType": "pdf"
       }
     ],
