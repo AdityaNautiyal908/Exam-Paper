@@ -1,4 +1,4 @@
-import { BookOpen, FileText, Layers, ClipboardList, FileCheck } from 'lucide-react';
+import { BookOpen, FileText, ClipboardList, FileCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
@@ -10,47 +10,48 @@ interface StatsCardProps {
   midtermCount: number;
 }
 
-export default function StatsCard({ totalPapers, totalCategories, filteredCount, finalCount, midtermCount }: StatsCardProps) {
-  const stats = [
+export default function StatsCard({ totalPapers, filteredCount, finalCount, midtermCount }: StatsCardProps) {
+  const totalPapersStat = {
+    label: 'TOTAL PAPERS',
+    value: totalPapers,
+    icon: FileText,
+    bgColor: 'bg-gradient-to-br from-cyan-100 to-cyan-200',
+    iconBg: 'bg-cyan-600',
+    borderColor: 'border-cyan-300'
+  };
+
+  const otherStats = [
     {
-      label: 'Total Papers',
-      value: totalPapers,
-      icon: FileText,
-      bgColor: 'bg-gradient-to-br from-indigo-50 to-indigo-100',
-      iconBg: 'bg-indigo-600',
-      borderColor: 'border-indigo-200'
-    },
-    {
-      label: 'Final Papers',
+      label: 'FINAL PAPERS',
       value: finalCount,
       icon: FileCheck,
-      bgColor: 'bg-gradient-to-br from-rose-50 to-rose-100',
+      bgColor: 'bg-gradient-to-br from-rose-100 to-rose-200',
       iconBg: 'bg-rose-600',
-      borderColor: 'border-rose-200'
+      borderColor: 'border-rose-300'
     },
     {
-      label: 'Mid-Term Papers',
+      label: 'MID-TERM PAPERS',
       value: midtermCount,
       icon: ClipboardList,
-      bgColor: 'bg-gradient-to-br from-emerald-50 to-emerald-100',
-      iconBg: 'bg-emerald-600',
-      borderColor: 'border-emerald-200'
-    },
-    {
-      label: 'Categories',
-      value: totalCategories,
-      icon: Layers,
-      bgColor: 'bg-gradient-to-br from-amber-50 to-amber-100',
+      bgColor: 'bg-gradient-to-br from-amber-100 to-amber-200',
       iconBg: 'bg-amber-600',
-      borderColor: 'border-amber-200'
+      borderColor: 'border-amber-300'
     },
     {
-      label: 'Available Now',
+      label: 'AVAILABLE NOW',
       value: filteredCount,
       icon: BookOpen,
-      bgColor: 'bg-gradient-to-br from-purple-50 to-purple-100',
-      iconBg: 'bg-purple-600',
-      borderColor: 'border-purple-200'
+      bgColor: 'bg-gradient-to-br from-emerald-100 to-emerald-200',
+      iconBg: 'bg-emerald-600',
+      borderColor: 'border-emerald-300'
+    },
+    {
+      label: 'SEMESTERS',
+      value: 6,
+      icon: BookOpen,
+      bgColor: 'bg-gradient-to-br from-blue-100 to-blue-200',
+      iconBg: 'bg-blue-600',
+      borderColor: 'border-blue-300'
     }
   ];
 
@@ -84,44 +85,76 @@ export default function StatsCard({ totalPapers, totalCategories, filteredCount,
     show: { opacity: 1, y: 0 }
   };
 
+  const StatCard = ({ stat, shouldAnimate = false }: { stat: typeof totalPapersStat; shouldAnimate?: boolean }) => (
+    <motion.div
+      key={shouldAnimate ? stat.value : undefined}
+      variants={shouldAnimate ? item : undefined}
+      initial={shouldAnimate ? "hidden" : false}
+      animate={shouldAnimate ? "show" : false}
+      whileHover={{ 
+        scale: 1.02,
+        transition: { type: "spring", stiffness: 300 }
+      }}
+      whileTap={{ scale: 0.98 }}
+      onClick={handleCardClick}
+      className={`${stat.bgColor} rounded-2xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${stat.borderColor} cursor-pointer relative overflow-hidden group`}
+    >
+      <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+      
+      <div className="relative z-10">
+        <div className={`w-12 h-12 md:w-14 md:h-14 ${stat.iconBg} rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}>
+          <stat.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+        </div>
+        
+        <motion.p 
+          key={shouldAnimate ? `value-${stat.value}` : undefined}
+          initial={shouldAnimate ? { opacity: 0, scale: 0.5 } : false}
+          animate={shouldAnimate ? { opacity: 1, scale: 1 } : false}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-4xl md:text-5xl font-bold text-gray-900 mb-2"
+        >
+          {stat.value}
+        </motion.p>
+        
+        <p className="text-xs md:text-sm font-bold text-gray-700 uppercase tracking-wide">
+          {stat.label}
+        </p>
+      </div>
+    </motion.div>
+  );
+
   return (
     <motion.div 
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10"
+      className="mb-8"
     >
-      {stats.map((stat) => (
-        <motion.div
-          key={stat.label}
-          variants={item}
-          whileHover={{ 
-            scale: 1.05,
-            y: -5,
-            transition: { type: "spring", stiffness: 300 }
-          }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleCardClick}
-          className={`${stat.bgColor} rounded-xl p-5 shadow-md hover:shadow-xl transition-colors duration-300 border-2 ${stat.borderColor} cursor-pointer relative overflow-hidden group`}
-        >
-          <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-          
-          <div className="flex items-center justify-between mb-4">
-            <div className={`w-12 h-12 ${stat.iconBg} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-              <stat.icon className="w-6 h-6 text-white" />
-            </div>
-          </div>
-          <motion.p 
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-3xl font-bold text-gray-900 mb-1.5"
-          >
-            {stat.value}
-          </motion.p>
-          <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">{stat.label}</p>
-        </motion.div>
-      ))}
+      {/* Mobile Layout: Total Papers full width, others in 2-column grid */}
+      <div className="lg:hidden space-y-4">
+        <StatCard stat={totalPapersStat} />
+        <div className="grid grid-cols-2 gap-4">
+          {otherStats.map((stat) => (
+            <StatCard 
+              key={stat.label} 
+              stat={stat} 
+              shouldAnimate={stat.label === 'AVAILABLE NOW'}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Layout: All cards in single row */}
+      <div className="hidden lg:grid lg:grid-cols-5 gap-4">
+        <StatCard stat={totalPapersStat} />
+        {otherStats.map((stat) => (
+          <StatCard 
+            key={stat.label} 
+            stat={stat} 
+            shouldAnimate={stat.label === 'AVAILABLE NOW'}
+          />
+        ))}
+      </div>
     </motion.div>
   );
 }
