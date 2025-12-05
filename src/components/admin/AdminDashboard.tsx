@@ -14,6 +14,7 @@ export default function AdminDashboard() {
   const { user } = useUser();
   const { isAdmin, isLoading } = useIsAdmin();
   const navigate = useNavigate();
+  const [isNavigatingToAnalytics, setIsNavigatingToAnalytics] = useState(false);
   const [semester, setSemester] = useState<Semester>(1);
   const [paperType, setPaperType] = useState<PaperType>('final');
   const [subjectId, setSubjectId] = useState(subjectsConfig[0].id);
@@ -160,13 +161,33 @@ export default function AdminDashboard() {
           
           {/* Analytics Dashboard Button */}
           <button
-            onClick={() => navigate('/admin/analytics')}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:shadow-lg transition-all transform hover:-translate-y-0.5 w-full md:w-auto"
+            onClick={() => {
+              setIsNavigatingToAnalytics(true);
+              setTimeout(() => {
+                navigate('/admin/analytics');
+              }, 1500); // Increased from 800ms to 1500ms
+            }}
+            disabled={isNavigatingToAnalytics}
+            className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-white font-medium transition-all ${
+              isNavigatingToAnalytics
+                ? 'bg-indigo-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-lg hover:-translate-y-0.5'
+            } w-full md:w-auto`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-            <span className="font-medium">View Analytics</span>
+            {isNavigatingToAnalytics ? (
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              </div>
+            ) : (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span>View Analytics</span>
+              </>
+            )}
           </button>
         </div>
 
