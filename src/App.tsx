@@ -7,6 +7,7 @@ import PDFViewer from './components/PDFViewer';
 import Footer from './components/Footer';
 import AnimatedBackdrop from './components/AnimatedBackdrop';
 import PageIntro from './components/PageIntro';
+import FirstVisitModal from './components/auth/FirstVisitModal';
 import { usePapers } from './hooks/usePapers';
 import { useAnalytics } from './hooks/useAnalytics';
 import { categories } from './utils/papers';
@@ -208,6 +209,7 @@ function App() {
     <div className="relative min-h-screen overflow-hidden">
       <PageIntro />
       <AnimatedBackdrop />
+      <FirstVisitModal />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <Header totalPapers={totalFileCount} />
