@@ -77,6 +77,12 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-emerald-50 border-emerald-100',
     textClass: 'text-emerald-500',
   },
+  cbot: {
+    Icon: null as any,
+    bgClass: 'bg-emerald-50 border-emerald-100',
+    textClass: 'text-emerald-500',
+    customImage: '/logos/cbot.png',
+  },
   database: {
     Icon: SiMysql,
     bgClass: 'bg-indigo-50 border-indigo-100',
@@ -98,6 +104,12 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-rose-50 border-rose-100',
     textClass: 'text-rose-500',
     customImage: '/logos/web.png',
+  },
+  dotnet: {
+    Icon: null as any,
+    bgClass: 'bg-purple-50 border-purple-100',
+    textClass: 'text-purple-500',
+    customImage: '/logos/net.png',
   },
   graphics: {
     Icon: SiAdobexd,

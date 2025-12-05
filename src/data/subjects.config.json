@@ -40,7 +40,7 @@
     "subject": "Computer Based Optimization Techniques",
     "category": "Advanced",
     "color": "mint",
-    "icon": "analytics",
+    "icon": "cbot",
     "semesters": [3],
     "matchers": ["computer based optimization techniques", "computer based optimization  techniques"]
   },
@@ -193,7 +193,7 @@
     "subject": ".NET Framework and Technologies",
     "category": "Programming",
     "color": "lavender",
-    "icon": "web",
+    "icon": "dotnet",
     "semesters": [6],
     "matchers": ["net framework and technologies", ".net framework"]
   },

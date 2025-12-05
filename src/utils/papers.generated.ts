@@ -270,7 +270,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Computer Based Optimization Techniques",
     "category": "Advanced",
     "color": "mint",
-    "icon": "analytics",
+    "icon": "cbot",
     "files": [
       {
         "id": "optimization-techniques-final-sem3-computer-based-optimization-techniques-paper-1-pdf-1",
@@ -697,7 +697,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": ".NET Framework and Technologies",
     "category": "Programming",
     "color": "lavender",
-    "icon": "web",
+    "icon": "dotnet",
     "files": [
       {
         "id": "net-framework-final-sem6-net-framework-and-technologies-paper-1-pdf-1",
@@ -858,7 +858,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Computer Based Optimization Techniques",
     "category": "Advanced",
     "color": "mint",
-    "icon": "analytics",
+    "icon": "cbot",
     "files": [
       {
         "id": "optimization-techniques-midterm-sem3-computer-based-optimization-techniques-paper-1-pdf-1",
