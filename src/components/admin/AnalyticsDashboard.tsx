@@ -366,25 +366,95 @@ export default function AnalyticsDashboard() {
               {/* Actions */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Actions</h3>
-                <div className="space-y-2">
-                  {sessionDetails.actions.map((action: any) => (
-                    <div
-                      key={action.id}
-                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                    >
-                      <div>
-                        <p className="text-sm font-medium text-gray-900">{action.action_type}</p>
-                        <p className="text-xs text-gray-500">{formatDate(action.timestamp)}</p>
+                <div className="space-y-3">
+                  {sessionDetails.actions.map((action: any) => {
+                    let actionData;
+                    try {
+                      actionData = typeof action.action_data === 'string' 
+                        ? JSON.parse(action.action_data) 
+                        : action.action_data || {};
+                    } catch (e) {
+                      actionData = { raw: action.action_data };
+                    }
+
+                    const getActionIcon = () => {
+                      switch (action.action_type) {
+                        case 'download_paper':
+                          return (
+                            <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          );
+                        case 'view_paper':
+                          return (
+                            <div className="p-2 bg-green-100 rounded-lg text-green-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          );
+                        default:
+                          return (
+                            <div className="p-2 bg-gray-100 rounded-lg text-gray-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          );
+                      }
+                    };
+
+                    const renderActionData = () => {
+                      if (!actionData || Object.keys(actionData).length === 0) return null;
+                      
+                      return (
+                        <div className="mt-2 text-sm text-gray-600 space-y-1">
+                          {Object.entries(actionData).map(([key, value]) => (
+                            <div key={key} className="flex">
+                              <span className="font-medium text-gray-700 w-24 flex-shrink-0">
+                                {key.replace(/_/g, ' ')}:
+                              </span>
+                              <span className="text-gray-900 break-all">
+                                {typeof value === 'object' ? JSON.stringify(value) : String(value)}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    };
+
+                    return (
+                      <div
+                        key={action.id}
+                        className="bg-white p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
+                      >
+                        <div className="flex items-start gap-3">
+                          {getActionIcon()}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between">
+                              <h4 className="font-medium text-gray-900 capitalize">
+                                {action.action_type.replace(/_/g, ' ')}
+                              </h4>
+                              <span className="text-xs text-gray-500">
+                                {formatDate(action.timestamp)}
+                              </span>
+                            </div>
+                            {renderActionData()}
+                          </div>
+                        </div>
                       </div>
-                      {action.action_data && (
-                        <span className="text-xs text-gray-600">
-                          {JSON.stringify(action.action_data)}
-                        </span>
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
                   {sessionDetails.actions.length === 0 && (
-                    <p className="text-sm text-gray-500">No actions recorded</p>
+                    <div className="text-center py-8 text-gray-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-gray-300 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                      <p>No actions recorded for this session</p>
+                    </div>
                   )}
                 </div>
               </div>

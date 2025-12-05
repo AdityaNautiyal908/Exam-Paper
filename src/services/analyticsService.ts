@@ -97,14 +97,32 @@ export class AnalyticsService {
   // Page View Tracking
   static async trackPageView(pageView: Omit<PageView, 'id' | 'timestamp'>): Promise<void> {
     try {
-      const { error } = await supabase.from('page_views').insert({
+      // First, insert the page view
+      const { error: pageViewError } = await supabase.from('page_views').insert({
         session_id: pageView.session_id,
         page_path: pageView.page_path,
         page_title: pageView.page_title,
         time_spent: pageView.time_spent,
       });
 
-      if (error) throw error;
+      if (pageViewError) throw pageViewError;
+
+      // Then update the session's total_time_spent
+      const { data: session } = await supabase
+        .from('user_sessions')
+        .select('total_time_spent')
+        .eq('session_id', pageView.session_id)
+        .single();
+
+      if (session) {
+        await supabase
+          .from('user_sessions')
+          .update({
+            total_time_spent: (session.total_time_spent || 0) + (pageView.time_spent || 0),
+            updated_at: new Date().toISOString()
+          })
+          .eq('session_id', pageView.session_id);
+      }
     } catch (error) {
       console.error('Error tracking page view:', error);
     }
