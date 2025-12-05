@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AnalyticsService } from '../../services/analyticsService';
-import { Users, Eye, MousePointerClick, Clock, UserCheck, UserX } from 'lucide-react';
+import { Users, Eye, MousePointerClick, Clock, UserCheck, UserX, ArrowLeft } from 'lucide-react';
 
 interface AnalyticsOverview {
   totalSessions: number;
@@ -12,6 +13,7 @@ interface AnalyticsOverview {
 }
 
 export default function AnalyticsDashboard() {
+  const navigate = useNavigate();
   const [overview, setOverview] = useState<AnalyticsOverview | null>(null);
   const [sessions, setSessions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +57,17 @@ export default function AnalyticsDashboard() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString();
+    const date = new Date(dateString);
+    return date.toLocaleString('en-IN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZone: 'Asia/Kolkata' // Indian Standard Time
+    });
   };
 
   if (loading && !overview) {
@@ -68,6 +80,15 @@ export default function AnalyticsDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate('/admin')}
+        className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="font-medium">Back to Admin</span>
+      </button>
+
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Analytics Dashboard</h1>
 
       {/* Overview Stats */}

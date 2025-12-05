@@ -70,10 +70,10 @@ export const useAnalytics = () => {
           time_spent: timeSpent,
         });
 
-        // Update session with time spent
+        // Update session with accumulated time
         await AnalyticsService.createOrUpdateSession({
           session_id: sessionId,
-          total_time_spent: timeSpent,
+          total_time_spent: timeSpent, // This gets added to existing time in the service
         } as any);
       }
 
@@ -85,20 +85,22 @@ export const useAnalytics = () => {
     trackPageView();
 
     // Track on page unload
-    const handleBeforeUnload = async () => {
+    const handleBeforeUnload = () => {
       const timeSpent = Math.floor((Date.now() - pageStartTime.current) / 1000);
       
-      await AnalyticsService.trackPageView({
+      // Use sendBeacon for reliable tracking on page unload
+      const data = {
         session_id: sessionId,
         page_path: currentPath.current,
         page_title: document.title,
         time_spent: timeSpent,
-      });
-
-      await AnalyticsService.createOrUpdateSession({
-        session_id: sessionId,
-        total_time_spent: timeSpent,
-      } as any);
+      };
+      
+      // Track final page view
+      navigator.sendBeacon(
+        `${import.meta.env.VITE_SUPABASE_URL}/rest/v1/page_views`,
+        JSON.stringify(data)
+      );
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -107,6 +109,7 @@ export const useAnalytics = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [location.pathname, sessionId]);
+
 
   // Track action function
   const trackAction = async (actionType: string, actionData?: any) => {

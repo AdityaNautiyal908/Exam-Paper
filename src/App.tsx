@@ -14,7 +14,7 @@ import { QuestionPaper, FilterCategory, PaperType, Semester } from './types';
 import { Loader2 } from 'lucide-react';
 
 function App() {
-  // Initialize analytics tracking
+  // Get trackAction for tracking paper views
   const { trackAction } = useAnalytics();
   
   // Load papers dynamically from Supabase
