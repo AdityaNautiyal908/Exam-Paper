@@ -1057,6 +1057,24 @@ export const midtermPapers: QuestionPaper[] = [
     ],
     "paperType": "midterm",
     "semester": 5
+  },
+  {
+    "id": "artificial-intelligence-midterm-sem5",
+    "subject": "Artificial Intelligence",
+    "category": "Advanced",
+    "color": "lavender",
+    "icon": "analytics",
+    "files": [
+      {
+        "id": "artificial-intelligence-midterm-sem5-artificial-intelligence-paper-1-pdf-1",
+        "label": "Paper 1",
+        "fileName": "ARTIFICIAL INTELLIGENCE paper-1.pdf",
+        "filePath": "https://bqzkpptgfnybggkcqylh.supabase.co/storage/v1/object/public/papers/midterm/sem5/ARTIFICIAL%20INTELLIGENCE%20paper-1.pdf",
+        "fileType": "pdf"
+      }
+    ],
+    "paperType": "midterm",
+    "semester": 5
   }
 ];
 

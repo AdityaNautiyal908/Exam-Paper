@@ -1,4 +1,3 @@
-import { BookOpen, FileText, ClipboardList, FileCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
@@ -14,7 +13,7 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
   const totalPapersStat = {
     label: 'TOTAL PAPERS',
     value: totalPapers,
-    icon: FileText,
+    iconImage: '/logos/Total.png',
     bgColor: 'bg-gradient-to-br from-cyan-100 to-cyan-200',
     iconBg: 'bg-cyan-600',
     borderColor: 'border-cyan-300'
@@ -24,7 +23,7 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
     {
       label: 'FINAL PAPERS',
       value: finalCount,
-      icon: FileCheck,
+      iconImage: '/logos/Final.png',
       bgColor: 'bg-gradient-to-br from-rose-100 to-rose-200',
       iconBg: 'bg-rose-600',
       borderColor: 'border-rose-300'
@@ -32,7 +31,7 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
     {
       label: 'MID-TERM PAPERS',
       value: midtermCount,
-      icon: ClipboardList,
+      iconImage: '/logos/mid.png',
       bgColor: 'bg-gradient-to-br from-amber-100 to-amber-200',
       iconBg: 'bg-amber-600',
       borderColor: 'border-amber-300'
@@ -40,7 +39,7 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
     {
       label: 'AVAILABLE NOW',
       value: filteredCount,
-      icon: BookOpen,
+      iconImage: '/logos/available.png',
       bgColor: 'bg-gradient-to-br from-emerald-100 to-emerald-200',
       iconBg: 'bg-emerald-600',
       borderColor: 'border-emerald-300'
@@ -48,7 +47,7 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
     {
       label: 'SEMESTERS',
       value: 6,
-      icon: BookOpen,
+      iconImage: '/logos/college.png',
       bgColor: 'bg-gradient-to-br from-blue-100 to-blue-200',
       iconBg: 'bg-blue-600',
       borderColor: 'border-blue-300'
@@ -85,7 +84,7 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
     show: { opacity: 1, y: 0 }
   };
 
-  const StatCard = ({ stat, shouldAnimate = false }: { stat: typeof totalPapersStat; shouldAnimate?: boolean }) => (
+  const StatCard = ({ stat, shouldAnimate = false }: { stat: any; shouldAnimate?: boolean }) => (
     <motion.div
       key={shouldAnimate ? stat.value : undefined}
       variants={shouldAnimate ? item : undefined}
@@ -108,7 +107,15 @@ export default function StatsCard({ totalPapers, filteredCount, finalCount, midt
       
       <div className="relative z-10">
         <div className={`w-12 h-12 md:w-14 md:h-14 ${stat.iconBg} rounded-2xl flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}>
-          <stat.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+          {stat.iconImage ? (
+            <img 
+              src={stat.iconImage} 
+              alt={stat.label}
+              className="w-6 h-6 md:w-7 md:h-7 object-contain"
+            />
+          ) : (
+            <stat.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+          )}
         </div>
         
         <motion.p 
