@@ -3,6 +3,7 @@ import { QuestionPaper } from '../types';
 import { useEffect, useMemo, useState } from 'react';
 import SubjectIcon from './SubjectIcon';
 import { getSafeFilePath } from '../utils/filePath';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 interface PDFViewerProps {
   paper: QuestionPaper | null;
@@ -12,6 +13,8 @@ interface PDFViewerProps {
 export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
   const [activeFileId, setActiveFileId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  const { trackAction } = useAnalytics();
 
   // Function to force download instead of opening in browser
   const handleDownload = async (url: string, filename: string) => {
@@ -27,10 +30,30 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
       link.click();
       document.body.removeChild(link);
       
+      // Track the download
+      if (paper) {
+        trackAction('download_paper', {
+          subject: paper.subject,
+          category: paper.category,
+          semester: paper.semester,
+          paperType: paper.paperType,
+          fileName: filename,
+          fileType: paper.files.find(f => f.fileName === filename)?.fileType || 'unknown'
+        });
+      }
+      
       // Clean up the blob URL
       window.URL.revokeObjectURL(blobUrl);
     } catch (error) {
       console.error('Download failed:', error);
+      // Track failed download attempt
+      if (paper) {
+        trackAction('download_error', {
+          subject: paper.subject,
+          error: error instanceof Error ? error.message : 'Unknown error',
+          fileName: filename
+        });
+      }
       // Fallback: open in new tab if download fails
       window.open(url, '_blank');
     }
