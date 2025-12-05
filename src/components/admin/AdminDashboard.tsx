@@ -139,7 +139,6 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-        {/* Back Button */}
         <button
           onClick={() => navigate('/', { state: { fromRoute: 'admin' } })}
           className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
@@ -148,14 +147,27 @@ export default function AdminDashboard() {
           <span className="font-medium">Back to Home</span>
         </button>
 
-        <div className="flex items-center gap-4 mb-8">
-          <div className="p-3 bg-indigo-100 rounded-xl">
-            <Upload className="w-6 h-6 text-indigo-600" />
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-indigo-100 rounded-xl">
+              <Upload className="w-6 h-6 text-indigo-600" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Upload Question Paper</h1>
+              <p className="text-gray-500 text-sm">Add new papers to the repository</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Upload Question Paper</h1>
-            <p className="text-gray-500 text-sm">Add new papers to the repository</p>
-          </div>
+          
+          {/* Analytics Dashboard Button */}
+          <button
+            onClick={() => navigate('/admin/analytics')}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <span className="font-medium">View Analytics</span>
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

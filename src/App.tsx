@@ -8,11 +8,15 @@ import Footer from './components/Footer';
 import AnimatedBackdrop from './components/AnimatedBackdrop';
 import PageIntro from './components/PageIntro';
 import { usePapers } from './hooks/usePapers';
+import { useAnalytics } from './hooks/useAnalytics';
 import { categories } from './utils/papers';
 import { QuestionPaper, FilterCategory, PaperType, Semester } from './types';
 import { Loader2 } from 'lucide-react';
 
 function App() {
+  // Initialize analytics tracking
+  const { trackAction } = useAnalytics();
+  
   // Load papers dynamically from Supabase
   const { finalPapers, midtermPapers, isLoading, error } = usePapers();
   
@@ -145,7 +149,15 @@ function App() {
                         <SubjectCard
                           key={paper.id}
                           paper={paper}
-                          onClick={() => setSelectedPaper(paper)}
+                          onClick={() => {
+                            setSelectedPaper(paper);
+                            trackAction('view_paper', {
+                              subject: paper.subject,
+                              category: paper.category,
+                              semester: paper.semester,
+                              paperType: paper.paperType,
+                            });
+                          }}
                           index={index}
                         />
                       ))}

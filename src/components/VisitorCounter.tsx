@@ -1,11 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useUser } from '@clerk/clerk-react';
 import { Users } from 'lucide-react';
 
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useUser();
+
+  // Check if user is admin
+  const isAdmin = user?.publicMetadata?.role === 'admin';
 
   useEffect(() => {
+    // Only fetch visitor count if user is admin
+    if (!isAdmin) {
+      setLoading(false);
+      return;
+    }
+
     // Using api.counterapi.dev - free visitor counter
     const namespace = 'bca-papers';
     const key = 'visits';
@@ -20,7 +31,10 @@ export default function VisitorCounter() {
         setLoading(false);
         setCount(null);
       });
-  }, []);
+  }, [isAdmin]);
+
+  // Hide component for non-admin users
+  if (!isAdmin) return null;
 
   if (loading) {
     return (

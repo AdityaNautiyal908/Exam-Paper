@@ -8,6 +8,7 @@ import AdminProtectedRoute from './components/auth/AdminProtectedRoute';
 const Home = lazy(() => import('./App'));
 const SignInPage = lazy(() => import('./components/auth/SignInPage'));
 const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard'));
+const AnalyticsDashboard = lazy(() => import('./components/admin/AnalyticsDashboard'));
 
 const AppRoutes = () => {
   const { isLoaded, isSignedIn } = useUser();
@@ -37,6 +38,14 @@ const AppRoutes = () => {
             element={
               <AdminProtectedRoute>
                 <AdminDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/analytics"
+            element={
+              <AdminProtectedRoute>
+                <AnalyticsDashboard />
               </AdminProtectedRoute>
             }
           />
