@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnalyticsService } from '../../services/analyticsService';
-import { Users, Eye, MousePointerClick, Clock, UserCheck, UserX, ArrowLeft } from 'lucide-react';
+import { Users, Eye, MousePointerClick, Clock, UserCheck, UserX, ArrowLeft, PieChart as PieChartIcon } from 'lucide-react';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+
+// Register ChartJS components
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend
+);
 
 interface AnalyticsOverview {
   totalSessions: number;
@@ -20,7 +29,6 @@ export default function AnalyticsDashboard() {
   const [filter, setFilter] = useState<'all' | 'anonymous' | 'logged-in'>('all');
   const [selectedSession, setSelectedSession] = useState<any>(null);
   const [sessionDetails, setSessionDetails] = useState<any>(null);
-
   useEffect(() => {
     loadAnalytics();
   }, [filter]);
@@ -33,11 +41,11 @@ export default function AnalyticsDashboard() {
         AnalyticsService.getAllSessions({
           isAnonymous: filter === 'anonymous' ? true : filter === 'logged-in' ? false : undefined,
           limit: 50,
-        }),
+        })
       ]);
 
       setOverview(overviewData);
-      setSessions(sessionsData.data || []);
+      setSessions(sessionsData?.data || []);
     } catch (error) {
       console.error('Error loading analytics:', error);
     } finally {
@@ -146,6 +154,98 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
       )}
+
+
+      {/* User Distribution Pie Chart */}
+      <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <PieChartIcon className="w-5 h-5 text-indigo-600" />
+          <h2 className="text-lg font-semibold text-gray-800">User Distribution</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div className="h-64 md:h-80">
+            {overview && (
+              <Pie 
+                data={{
+                  labels: ['Anonymous Users', 'Logged In Users'],
+                  datasets: [{
+                    data: [overview.anonymousUsers, overview.loggedInUsers],
+                    backgroundColor: [
+                      'rgba(99, 102, 241, 0.7)',
+                      'rgba(79, 70, 229, 0.7)',
+                    ],
+                    borderColor: [
+                      'rgba(99, 102, 241, 1)',
+                      'rgba(79, 70, 229, 1)',
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 10,
+                  }],
+                }}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: {
+                      position: 'right',
+                      labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                      },
+                    },
+                    tooltip: {
+                      callbacks: {
+                        label: function(context) {
+                          const label = context.label || '';
+                          const value = context.raw || 0;
+                          const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                          const percentage = Math.round((value / total) * 100);
+                          return `${label}: ${value} (${percentage}%)`;
+                        }
+                      }
+                    }
+                  },
+                }}
+              />
+            )}
+          </div>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-medium text-gray-700 mb-2">User Statistics</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
+                    <span className="text-sm text-gray-600">Anonymous Users</span>
+                  </div>
+                  <span className="text-sm font-medium">{overview?.anonymousUsers || 0}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-indigo-600"></div>
+                    <span className="text-sm text-gray-600">Logged In Users</span>
+                  </div>
+                  <span className="text-sm font-medium">{overview?.loggedInUsers || 0}</span>
+                </div>
+                <div className="pt-2 mt-2 border-t border-gray-100">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-700">Total Users</span>
+                    <span className="text-sm font-semibold">
+                      {(overview?.anonymousUsers || 0) + (overview?.loggedInUsers || 0)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-indigo-50 p-3 rounded-lg">
+              <p className="text-xs text-indigo-700">
+                This chart shows the distribution between anonymous and logged-in users. Hover over the chart segments to see percentages.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Filters */}
       <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 mb-6">
