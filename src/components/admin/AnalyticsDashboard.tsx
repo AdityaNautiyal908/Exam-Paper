@@ -97,7 +97,7 @@ export default function AnalyticsDashboard() {
       {/* Overview Stats */}
       {overview && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-8">
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-200">
             <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
               <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600 flex-shrink-0" />
               <span className="text-xs md:text-sm text-gray-600 leading-tight">Total Sessions</span>
@@ -105,7 +105,7 @@ export default function AnalyticsDashboard() {
             <div className="text-xl md:text-2xl font-bold text-gray-900">{overview.totalSessions}</div>
           </div>
 
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-200">
             <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
               <Eye className="w-4 h-4 md:w-5 md:h-5 text-green-600 flex-shrink-0" />
               <span className="text-xs md:text-sm text-gray-600 leading-tight">Page Views</span>
@@ -113,7 +113,7 @@ export default function AnalyticsDashboard() {
             <div className="text-xl md:text-2xl font-bold text-gray-900">{overview.totalPageViews}</div>
           </div>
 
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-200">
             <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
               <MousePointerClick className="w-4 h-4 md:w-5 md:h-5 text-purple-600 flex-shrink-0" />
               <span className="text-xs md:text-sm text-gray-600 leading-tight">Actions</span>
@@ -121,7 +121,7 @@ export default function AnalyticsDashboard() {
             <div className="text-xl md:text-2xl font-bold text-gray-900">{overview.totalActions}</div>
           </div>
 
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-200">
             <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
               <UserX className="w-4 h-4 md:w-5 md:h-5 text-gray-600 flex-shrink-0" />
               <span className="text-xs md:text-sm text-gray-600 leading-tight">Anonymous</span>
@@ -129,7 +129,7 @@ export default function AnalyticsDashboard() {
             <div className="text-xl md:text-2xl font-bold text-gray-900">{overview.anonymousUsers}</div>
           </div>
 
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-200">
             <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
               <UserCheck className="w-4 h-4 md:w-5 md:h-5 text-indigo-600 flex-shrink-0" />
               <span className="text-xs md:text-sm text-gray-600 leading-tight">Logged In</span>
@@ -137,7 +137,7 @@ export default function AnalyticsDashboard() {
             <div className="text-xl md:text-2xl font-bold text-gray-900">{overview.loggedInUsers}</div>
           </div>
 
-          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-200">
             <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
               <Clock className="w-4 h-4 md:w-5 md:h-5 text-orange-600 flex-shrink-0" />
               <span className="text-xs md:text-sm text-gray-600 leading-tight">Avg Duration</span>
