@@ -57,16 +57,19 @@ export default function AnalyticsDashboard() {
   };
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+    // Ensure the timestamp is treated as UTC by appending 'Z' if not present
+    const utcString = dateString.endsWith('Z') ? dateString : dateString + 'Z';
+    const date = new Date(utcString);
+    
+    // Format: 12/05/2025, 3:46:33 PM (in local timezone)
     return date.toLocaleString('en-IN', {
-      year: 'numeric',
-      month: '2-digit',
       day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Kolkata' // Indian Standard Time
+      hour12: true
     });
   };
 
