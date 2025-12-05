@@ -6,7 +6,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Programming in C",
     "category": "Programming",
     "color": "lavender",
-    "icon": "c",
+    "icon": "c_lang",
     "files": [
       {
         "id": "programming-in-c-final-sem1-programming-in-c-paper-1-pdf-1",
@@ -195,7 +195,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Fundamentals of Computer Organization",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "fco_custom",
     "files": [
       {
         "id": "fco-final-sem2-fundamentals-of-computer-organization-paper-1-pdf-1",
@@ -245,7 +245,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Data Structure using C",
     "category": "Programming",
     "color": "mint",
-    "icon": "c",
+    "icon": "c_lang",
     "files": [
       {
         "id": "data-structures-final-sem2-data-structure-using-c-paper-1-pdf-1",
@@ -309,7 +309,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Programming Using Python",
     "category": "Programming",
     "color": "peach",
-    "icon": "python",
+    "icon": "python_lang",
     "files": [
       {
         "id": "python-final-sem3-programming-using-python-paper-1-pdf-1",
@@ -334,7 +334,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Database Management Systems",
     "category": "Database",
     "color": "lavender",
-    "icon": "database",
+    "icon": "sql",
     "files": [
       {
         "id": "dbms-final-sem3-database-management-systems-paper-1-pdf-1",
@@ -359,7 +359,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Programming in Java",
     "category": "Programming",
     "color": "mint",
-    "icon": "java",
+    "icon": "java_lang",
     "files": [
       {
         "id": "programming-in-java-final-sem4-programming-in-java-paper-1-pdf-1",
@@ -398,7 +398,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Computer Networks",
     "category": "Core",
     "color": "sunny",
-    "icon": "web",
+    "icon": "network",
     "files": [
       {
         "id": "computer-networks-final-sem4-computer-network-paper-2-pdf-1",
@@ -430,7 +430,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Operating System and Linux",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "linux",
     "files": [
       {
         "id": "os-linux-final-sem4-operating-system-and-linux-paper-1-pdf-1",
@@ -462,7 +462,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Theory of Computation",
     "category": "Advanced",
     "color": "peach",
-    "icon": "analytics",
+    "icon": "theory_computation",
     "files": [
       {
         "id": "theory-of-computation-final-sem4-theory-of-computation-paper-1-pdf-1",
@@ -501,7 +501,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Internet of Things",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "cloud",
+    "icon": "iot",
     "files": [
       {
         "id": "iot-final-sem4-internet-of-things-pdf-1",
@@ -519,7 +519,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Advanced Java",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "java",
+    "icon": "java_lang",
     "files": [
       {
         "id": "advanced-java-final-sem5-advance-java-paper-1-pdf-1",
@@ -558,7 +558,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Cloud Computing",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "cloud",
+    "icon": "cloud_custom",
     "files": [
       {
         "id": "cloud-computing-final-sem5-cloud-computing-paper-1-pdf-1",
@@ -583,7 +583,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Web Technologies",
     "category": "Web",
     "color": "mint",
-    "icon": "web",
+    "icon": "web_dev",
     "files": [
       {
         "id": "web-tech-final-sem5-web-technologies-paper-1-pdf-1",
@@ -615,7 +615,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Computer Graphics",
     "category": "Core",
     "color": "peach",
-    "icon": "graphics",
+    "icon": "graphics_custom",
     "files": [
       {
         "id": "computer-graphics-final-sem5-computer-graphics-paper-1-pdf-1",
@@ -647,7 +647,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Artificial Intelligence",
     "category": "Advanced",
     "color": "lavender",
-    "icon": "analytics",
+    "icon": "ai",
     "files": [
       {
         "id": "artificial-intelligence-final-sem5-artificial-intelligence-paper-1-pdf-1",
@@ -672,7 +672,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Cyber Security",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "security",
+    "icon": "cyber_security",
     "files": [
       {
         "id": "cyber-security-final-sem5-cyber-security-paper-1-pdf-1",
@@ -804,7 +804,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Fundamentals of Computer Organization",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "fco_custom",
     "files": [
       {
         "id": "fco-midterm-sem2-fundamentals-of-computer-organization-paper-1-pdf-1",
@@ -840,7 +840,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Data Structure using C",
     "category": "Programming",
     "color": "mint",
-    "icon": "c",
+    "icon": "c_lang",
     "files": [
       {
         "id": "data-structures-midterm-sem2-data-structure-using-c-paper-1-pdf-1",
@@ -876,7 +876,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Programming Using Python",
     "category": "Programming",
     "color": "peach",
-    "icon": "python",
+    "icon": "python_lang",
     "files": [
       {
         "id": "python-midterm-sem3-programming-using-python-pdf-1",
@@ -894,7 +894,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Database Management Systems",
     "category": "Database",
     "color": "lavender",
-    "icon": "database",
+    "icon": "sql",
     "files": [
       {
         "id": "dbms-midterm-sem3-database-management-systems-pdf-1",
@@ -912,7 +912,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Theory of Computation",
     "category": "Advanced",
     "color": "peach",
-    "icon": "analytics",
+    "icon": "theory_computation",
     "files": [
       {
         "id": "theory-of-computation-midterm-sem3-theory-of-computation-pdf-1",
@@ -930,7 +930,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Programming in Java",
     "category": "Programming",
     "color": "mint",
-    "icon": "java",
+    "icon": "java_lang",
     "files": [
       {
         "id": "programming-in-java-midterm-sem4-programming-in-java-paper-1-pdf-1",
@@ -955,7 +955,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Computer Networks",
     "category": "Core",
     "color": "sunny",
-    "icon": "web",
+    "icon": "network",
     "files": [
       {
         "id": "computer-networks-midterm-sem4-computer-network-paper-1-pdf-1",
@@ -973,7 +973,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Operating System and Linux",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "linux",
     "files": [
       {
         "id": "os-linux-midterm-sem4-operating-system-and-linux-paper-1-pdf-1",
@@ -991,7 +991,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Internet of Things",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "cloud",
+    "icon": "iot",
     "files": [
       {
         "id": "iot-midterm-sem4-internet-of-things-paper-1-pdf-1",
@@ -1009,7 +1009,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Cloud Computing",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "cloud",
+    "icon": "cloud_custom",
     "files": [
       {
         "id": "cloud-computing-midterm-sem5-cloud-computing-paper-1-pdf-1",
@@ -1027,7 +1027,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Web Technologies",
     "category": "Web",
     "color": "mint",
-    "icon": "web",
+    "icon": "web_dev",
     "files": [
       {
         "id": "web-tech-midterm-sem5-web-technologies-paper-1-pdf-1",
@@ -1045,7 +1045,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Computer Graphics",
     "category": "Core",
     "color": "peach",
-    "icon": "graphics",
+    "icon": "graphics_custom",
     "files": [
       {
         "id": "computer-graphics-midterm-sem5-computer-graphics-paper-1-pdf-1",
@@ -1063,7 +1063,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Artificial Intelligence",
     "category": "Advanced",
     "color": "lavender",
-    "icon": "analytics",
+    "icon": "ai",
     "files": [
       {
         "id": "artificial-intelligence-midterm-sem5-artificial-intelligence-paper-1-pdf-1",

@@ -27,6 +27,12 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-blue-50 border-blue-100',
     textClass: 'text-blue-600',
   },
+  c_lang: {
+    Icon: null as any,
+    bgClass: 'bg-blue-50 border-blue-100',
+    textClass: 'text-blue-600',
+    customImage: '/logos/C.png',
+  },
   cpp: {
     Icon: null as any,
     bgClass: 'bg-blue-50 border-blue-100',
@@ -38,15 +44,33 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-orange-50 border-orange-100',
     textClass: 'text-orange-500',
   },
+  java_lang: {
+    Icon: null as any,
+    bgClass: 'bg-orange-50 border-orange-100',
+    textClass: 'text-orange-500',
+    customImage: '/logos/java.png',
+  },
   python: {
     Icon: SiPython,
     bgClass: 'bg-yellow-50 border-yellow-100',
     textClass: 'text-yellow-500',
   },
+  python_lang: {
+    Icon: null as any,
+    bgClass: 'bg-yellow-50 border-yellow-100',
+    textClass: 'text-yellow-500',
+    customImage: '/logos/python.png',
+  },
   cloud: {
     Icon: SiGooglecloud,
     bgClass: 'bg-cyan-50 border-cyan-100',
     textClass: 'text-cyan-500',
+  },
+  cloud_custom: {
+    Icon: null as any,
+    bgClass: 'bg-cyan-50 border-cyan-100',
+    textClass: 'text-cyan-500',
+    customImage: '/logos/cloud.png',
   },
   analytics: {
     Icon: SiGoogleanalytics,
@@ -58,20 +82,44 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-indigo-50 border-indigo-100',
     textClass: 'text-indigo-600',
   },
+  sql: {
+    Icon: null as any,
+    bgClass: 'bg-indigo-50 border-indigo-100',
+    textClass: 'text-indigo-600',
+    customImage: '/logos/sql.png',
+  },
   web: {
     Icon: SiHtml5,
     bgClass: 'bg-rose-50 border-rose-100',
     textClass: 'text-rose-500',
+  },
+  web_dev: {
+    Icon: null as any,
+    bgClass: 'bg-rose-50 border-rose-100',
+    textClass: 'text-rose-500',
+    customImage: '/logos/web.png',
   },
   graphics: {
     Icon: SiAdobexd,
     bgClass: 'bg-pink-50 border-pink-100',
     textClass: 'text-pink-500',
   },
+  graphics_custom: {
+    Icon: null as any,
+    bgClass: 'bg-pink-50 border-pink-100',
+    textClass: 'text-pink-500',
+    customImage: '/logos/computer graphics.png',
+  },
   computer: {
     Icon: MdOutlineComputer,
     bgClass: 'bg-slate-50 border-slate-100',
     textClass: 'text-slate-600',
+  },
+  fco_custom: {
+    Icon: null as any,
+    bgClass: 'bg-slate-50 border-slate-100',
+    textClass: 'text-slate-600',
+    customImage: '/logos/fundamental of computer.png',
   },
   communication: {
     Icon: SiBookstack,
@@ -82,6 +130,12 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     Icon: MdSecurity,
     bgClass: 'bg-red-50 border-red-100',
     textClass: 'text-red-600',
+  },
+  cyber_security: {
+    Icon: null as any,
+    bgClass: 'bg-red-50 border-red-100',
+    textClass: 'text-red-600',
+    customImage: '/logos/cyber security.png',
   },
   maths: {
     Icon: null as any,
@@ -112,6 +166,36 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-green-50 border-green-100',
     textClass: 'text-green-600',
     customImage: '/logos/environment.png',
+  },
+  ai: {
+    Icon: null as any,
+    bgClass: 'bg-purple-50 border-purple-100',
+    textClass: 'text-purple-600',
+    customImage: '/logos/AI.png',
+  },
+  network: {
+    Icon: null as any,
+    bgClass: 'bg-cyan-50 border-cyan-100',
+    textClass: 'text-cyan-600',
+    customImage: '/logos/network.png',
+  },
+  linux: {
+    Icon: null as any,
+    bgClass: 'bg-yellow-50 border-yellow-100',
+    textClass: 'text-yellow-600',
+    customImage: '/logos/linux.png',
+  },
+  iot: {
+    Icon: null as any,
+    bgClass: 'bg-teal-50 border-teal-100',
+    textClass: 'text-teal-600',
+    customImage: '/logos/IOT.png',
+  },
+  theory_computation: {
+    Icon: null as any,
+    bgClass: 'bg-amber-50 border-amber-100',
+    textClass: 'text-amber-600',
+    customImage: '/logos/Theory of Computation.png',
   },
   default: {
     Icon: PiLaptopBold,

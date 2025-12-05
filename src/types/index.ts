@@ -1,21 +1,35 @@
 export type SubjectIconKey =
   | 'c'
+  | 'c_lang'
   | 'cpp'
   | 'java'
+  | 'java_lang'
   | 'python'
+  | 'python_lang'
   | 'cloud'
+  | 'cloud_custom'
   | 'analytics'
   | 'database'
+  | 'sql'
   | 'web'
+  | 'web_dev'
   | 'graphics'
+  | 'graphics_custom'
   | 'computer'
+  | 'fco_custom'
   | 'communication'
   | 'security'
+  | 'cyber_security'
   | 'maths'
   | 'computer_fundamental'
   | 'software_engineering'
   | 'english_communication'
-  | 'environment';
+  | 'environment'
+  | 'ai'
+  | 'network'
+  | 'linux'
+  | 'iot'
+  | 'theory_computation';
 
 export type PaperType = 'final' | 'midterm';
 export type FileType = 'pdf' | 'image';

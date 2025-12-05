@@ -4,7 +4,7 @@
     "subject": "Programming in C",
     "category": "Programming",
     "color": "lavender",
-    "icon": "c",
+    "icon": "c_lang",
     "semesters": [1],
     "matchers": ["programming in 'c'", "programming in 'c'", "programming in c"]
   },
@@ -13,7 +13,7 @@
     "subject": "Programming in Java",
     "category": "Programming",
     "color": "mint",
-    "icon": "java",
+    "icon": "java_lang",
     "semesters": [4],
     "matchers": ["programming in java"]
   },
@@ -22,7 +22,7 @@
     "subject": "Advanced Java",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "java",
+    "icon": "java_lang",
     "semesters": [5],
     "matchers": ["advance java", "advanced java"]
   },
@@ -31,7 +31,7 @@
     "subject": "Cloud Computing",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "cloud",
+    "icon": "cloud_custom",
     "semesters": [5],
     "matchers": ["cloud computing"]
   },
@@ -49,7 +49,7 @@
     "subject": "Programming Using Python",
     "category": "Programming",
     "color": "peach",
-    "icon": "python",
+    "icon": "python_lang",
     "semesters": [3],
     "matchers": ["programming using python"]
   },
@@ -58,7 +58,7 @@
     "subject": "Database Management Systems",
     "category": "Database",
     "color": "lavender",
-    "icon": "database",
+    "icon": "sql",
     "semesters": [3],
     "matchers": ["database management systems"]
   },
@@ -67,7 +67,7 @@
     "subject": "Web Technologies",
     "category": "Web",
     "color": "mint",
-    "icon": "web",
+    "icon": "web_dev",
     "semesters": [5],
     "matchers": ["web technologies", "web technologies and php"]
   },
@@ -76,7 +76,7 @@
     "subject": "Computer Graphics",
     "category": "Core",
     "color": "peach",
-    "icon": "graphics",
+    "icon": "graphics_custom",
     "semesters": [5],
     "matchers": ["computer graphics"]
   },
@@ -103,7 +103,7 @@
     "subject": "Artificial Intelligence",
     "category": "Advanced",
     "color": "lavender",
-    "icon": "analytics",
+    "icon": "ai",
     "semesters": [5],
     "matchers": ["artificial intelligence"]
   },
@@ -139,7 +139,7 @@
     "subject": "Fundamentals of Computer Organization",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "fco_custom",
     "semesters": [2],
     "matchers": ["fundamentals of computer organization"]
   },
@@ -157,7 +157,7 @@
     "subject": "Computer Networks",
     "category": "Core",
     "color": "sunny",
-    "icon": "web",
+    "icon": "network",
     "semesters": [4],
     "matchers": ["computer network", "computer networks"]
   },
@@ -166,7 +166,7 @@
     "subject": "Operating System and Linux",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "linux",
     "semesters": [4],
     "matchers": ["operating system and linux"]
   },
@@ -175,7 +175,7 @@
     "subject": "Theory of Computation",
     "category": "Advanced",
     "color": "peach",
-    "icon": "analytics",
+    "icon": "theory_computation",
     "semesters": [4],
     "matchers": ["theory of computation"]
   },
@@ -184,7 +184,7 @@
     "subject": "Cyber Security",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "security",
+    "icon": "cyber_security",
     "semesters": [5],
     "matchers": ["cyber security"]
   },
@@ -202,7 +202,7 @@
     "subject": "Data Structure using C",
     "category": "Programming",
     "color": "mint",
-    "icon": "c",
+    "icon": "c_lang",
     "semesters": [2],
     "matchers": ["data structure using 'c'", "data structure using c"]
   },
@@ -211,7 +211,7 @@
     "subject": "Internet of Things",
     "category": "Advanced",
     "color": "sunny",
-    "icon": "cloud",
+    "icon": "iot",
     "semesters": [4],
     "matchers": ["internet of things"]
   }
