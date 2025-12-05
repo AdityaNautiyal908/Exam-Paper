@@ -1,5 +1,6 @@
 export type SubjectIconKey =
   | 'c'
+  | 'cpp'
   | 'java'
   | 'python'
   | 'cloud'
@@ -9,7 +10,12 @@ export type SubjectIconKey =
   | 'graphics'
   | 'computer'
   | 'communication'
-  | 'security';
+  | 'security'
+  | 'maths'
+  | 'computer_fundamental'
+  | 'software_engineering'
+  | 'english_communication'
+  | 'environment';
 
 export type PaperType = 'final' | 'midterm';
 export type FileType = 'pdf' | 'image';

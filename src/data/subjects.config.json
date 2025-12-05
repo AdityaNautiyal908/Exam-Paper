@@ -85,7 +85,7 @@
     "subject": "Computer Fundamentals",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "computer_fundamental",
     "semesters": [1],
     "matchers": ["computer fundamentals"]
   },
@@ -94,7 +94,7 @@
     "subject": "English Communication",
     "category": "Core",
     "color": "sunny",
-    "icon": "communication",
+    "icon": "english_communication",
     "semesters": [1],
     "matchers": ["english communication"]
   },
@@ -112,7 +112,7 @@
     "subject": "Mathematical Foundation of Computer Science",
     "category": "Core",
     "color": "peach",
-    "icon": "analytics",
+    "icon": "maths",
     "semesters": [1],
     "matchers": ["mathematical foundation of computer science"]
   },
@@ -121,7 +121,7 @@
     "subject": "Software Engineering",
     "category": "Core",
     "color": "mint",
-    "icon": "computer",
+    "icon": "software_engineering",
     "semesters": [1],
     "matchers": ["software engineering"]
   },
@@ -130,7 +130,7 @@
     "subject": "Environmental Science",
     "category": "Core",
     "color": "mint",
-    "icon": "cloud",
+    "icon": "environment",
     "semesters": [2],
     "matchers": ["environmental science"]
   },
@@ -148,7 +148,7 @@
     "subject": "Object Oriented Programming Using C++",
     "category": "Programming",
     "color": "peach",
-    "icon": "c",
+    "icon": "cpp",
     "semesters": [2],
     "matchers": ["object oriented programming using c++", "object oriented programming using cpp"]
   },

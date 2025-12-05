@@ -15,9 +15,10 @@ import { FaJava } from 'react-icons/fa';
 import { SubjectIconKey } from '../types';
 
 type IconConfig = {
-  Icon: IconType;
+  Icon: IconType | null;
   bgClass: string;
   textClass: string;
+  customImage?: string;
 };
 
 const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
@@ -25,6 +26,12 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     Icon: SiC,
     bgClass: 'bg-blue-50 border-blue-100',
     textClass: 'text-blue-600',
+  },
+  cpp: {
+    Icon: null as any,
+    bgClass: 'bg-blue-50 border-blue-100',
+    textClass: 'text-blue-600',
+    customImage: '/logos/c++.png',
   },
   java: {
     Icon: FaJava,
@@ -76,6 +83,36 @@ const iconConfig: Record<SubjectIconKey | 'default', IconConfig> = {
     bgClass: 'bg-red-50 border-red-100',
     textClass: 'text-red-600',
   },
+  maths: {
+    Icon: null as any,
+    bgClass: 'bg-green-50 border-green-100',
+    textClass: 'text-green-600',
+    customImage: '/logos/maths.png',
+  },
+  computer_fundamental: {
+    Icon: null as any,
+    bgClass: 'bg-blue-50 border-blue-100',
+    textClass: 'text-blue-600',
+    customImage: '/logos/computer fundamental.png',
+  },
+  software_engineering: {
+    Icon: null as any,
+    bgClass: 'bg-purple-50 border-purple-100',
+    textClass: 'text-purple-600',
+    customImage: '/logos/software engineering.png',
+  },
+  english_communication: {
+    Icon: null as any,
+    bgClass: 'bg-pink-50 border-pink-100',
+    textClass: 'text-pink-600',
+    customImage: '/logos/english communication.png',
+  },
+  environment: {
+    Icon: null as any,
+    bgClass: 'bg-green-50 border-green-100',
+    textClass: 'text-green-600',
+    customImage: '/logos/environment.png',
+  },
   default: {
     Icon: PiLaptopBold,
     bgClass: 'bg-white/70 border-white/50',
@@ -101,14 +138,23 @@ interface SubjectIconProps {
 }
 
 export default function SubjectIcon({ iconKey, size = 'lg', className = '' }: SubjectIconProps) {
-  const { Icon, bgClass, textClass } = iconConfig[iconKey] ?? iconConfig.default;
+  const config = iconConfig[iconKey] ?? iconConfig.default;
+  const { Icon, bgClass, textClass, customImage } = config;
   const sizeClass = sizeStyles[size];
 
   return (
     <div
       className={`${sizeClass.container} flex items-center justify-center shadow-sm border ${bgClass} group-hover:scale-110 transition-transform duration-300 ${className}`}
     >
-      <Icon className={`${sizeClass.icon} ${textClass}`} />
+      {customImage ? (
+        <img 
+          src={customImage} 
+          alt={iconKey}
+          className={`${sizeClass.icon} object-contain`}
+        />
+      ) : Icon ? (
+        <Icon className={`${sizeClass.icon} ${textClass}`} />
+      ) : null}
     </div>
   );
 }

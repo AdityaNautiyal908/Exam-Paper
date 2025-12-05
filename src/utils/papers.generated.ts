@@ -38,7 +38,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Computer Fundamentals",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "computer_fundamental",
     "files": [
       {
         "id": "computer-fundamentals-final-sem1-computer-fundamentals-paper-1-pdf-1",
@@ -77,7 +77,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "English Communication",
     "category": "Core",
     "color": "sunny",
-    "icon": "communication",
+    "icon": "english_communication",
     "files": [
       {
         "id": "english-communication-final-sem1-english-communicationpaper-1-pdf-1",
@@ -102,7 +102,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Mathematical Foundation of Computer Science",
     "category": "Core",
     "color": "peach",
-    "icon": "analytics",
+    "icon": "maths",
     "files": [
       {
         "id": "mfcs-final-sem1-mathematical-foundation-of-computer-science-paper-1-pdf-1",
@@ -120,7 +120,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Software Engineering",
     "category": "Core",
     "color": "mint",
-    "icon": "computer",
+    "icon": "software_engineering",
     "files": [
       {
         "id": "software-engineering-final-sem1-software-engineering-paper-1-pdf-1",
@@ -138,7 +138,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Mathematical Foundation of Computer Science",
     "category": "Core",
     "color": "peach",
-    "icon": "analytics",
+    "icon": "maths",
     "files": [
       {
         "id": "mfcs-final-sem2-mathematical-foundation-of-computer-science-paper-1-pdf-1",
@@ -163,7 +163,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Environmental Science",
     "category": "Core",
     "color": "mint",
-    "icon": "cloud",
+    "icon": "environment",
     "files": [
       {
         "id": "environmental-science-final-sem2-environmental-science-paper-1-pdf-1",
@@ -213,7 +213,7 @@ export const finalPapers: QuestionPaper[] = [
     "subject": "Object Oriented Programming Using C++",
     "category": "Programming",
     "color": "peach",
-    "icon": "c",
+    "icon": "cpp",
     "files": [
       {
         "id": "oops-cpp-final-sem2-object-oriented-programming-using-cpp-paper-1-pdf-1",
@@ -732,7 +732,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Computer Fundamentals",
     "category": "Core",
     "color": "lavender",
-    "icon": "computer",
+    "icon": "computer_fundamental",
     "files": [
       {
         "id": "computer-fundamentals-midterm-sem1-computer-fundamentals-pdf-1",
@@ -750,7 +750,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "English Communication",
     "category": "Core",
     "color": "sunny",
-    "icon": "communication",
+    "icon": "english_communication",
     "files": [
       {
         "id": "english-communication-midterm-sem1-english-communication-pdf-1",
@@ -768,7 +768,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Software Engineering",
     "category": "Core",
     "color": "mint",
-    "icon": "computer",
+    "icon": "software_engineering",
     "files": [
       {
         "id": "software-engineering-midterm-sem1-software-engineering-pdf-1",
@@ -786,7 +786,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Environmental Science",
     "category": "Core",
     "color": "mint",
-    "icon": "cloud",
+    "icon": "environment",
     "files": [
       {
         "id": "environmental-science-midterm-sem2-environmental-science-paper-1-pdf-1",
@@ -822,7 +822,7 @@ export const midtermPapers: QuestionPaper[] = [
     "subject": "Object Oriented Programming Using C++",
     "category": "Programming",
     "color": "peach",
-    "icon": "c",
+    "icon": "cpp",
     "files": [
       {
         "id": "oops-cpp-midterm-sem2-object-oriented-programming-using-c-paper-1-pdf-1",
