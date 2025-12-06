@@ -8,6 +8,7 @@ import { useIsAdmin } from '../../utils/auth';
 import { uploadNote, deleteNote, fetchNotesBySubject } from '../../services/notesService';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
+import ScrollProgressBar from '../ScrollProgressBar';
 
 
 
@@ -175,7 +176,9 @@ export default function NotesDashboard() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-12">
+    <>
+      <ScrollProgressBar />
+      <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
         <button
           onClick={() => navigate('/admin')}
@@ -358,5 +361,6 @@ export default function NotesDashboard() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import { useIsAdmin } from '../../utils/auth';
 import { uploadPDFToSupabase } from '../../utils/uploadToSupabase';
 import { clearPapersCache } from '../../hooks/usePapers';
 import PaperManager from './PaperManager';
+import ScrollProgressBar from '../ScrollProgressBar';
 
 
 export default function AdminDashboard() {
@@ -139,7 +140,9 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-12">
+    <>
+      <ScrollProgressBar />
+      <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
         <button
           onClick={() => navigate('/', { state: { fromRoute: 'admin' } })}
@@ -349,5 +352,6 @@ export default function AdminDashboard() {
         <PaperManager semester={semester} paperType={paperType} />
       </div>
     </div>
+    </>
   );
 }

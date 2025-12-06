@@ -6,6 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import LikesViewer from './LikesViewer';
 import { getLikeStats } from '../../services/likesService';
+import ScrollProgressBar from '../ScrollProgressBar';
 
 // Register ChartJS components
 ChartJS.register(
@@ -96,7 +97,9 @@ export default function AnalyticsDashboard() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <>
+      <ScrollProgressBar />
+      <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Back Button */}
       <button
         onClick={() => navigate('/admin')}
@@ -672,5 +675,6 @@ export default function AnalyticsDashboard() {
         <LikesViewer />
       </div>
     </div>
+    </>
   );
 }

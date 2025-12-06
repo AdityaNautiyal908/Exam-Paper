@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import AnimatedBackdrop from './components/AnimatedBackdrop';
 import PageIntro from './components/PageIntro';
 import FirstVisitModal from './components/auth/FirstVisitModal';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import { usePapers } from './hooks/usePapers';
 import { useAnalytics } from './hooks/useAnalytics';
 import { categories } from './utils/papers';
@@ -207,6 +208,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      <ScrollProgressBar />
       <PageIntro />
       <AnimatedBackdrop />
       <FirstVisitModal />
