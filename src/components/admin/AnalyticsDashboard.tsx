@@ -7,6 +7,7 @@ import { Pie } from 'react-chartjs-2';
 import LikesViewer from './LikesViewer';
 import { getLikeStats } from '../../services/likesService';
 import ScrollProgressBar from '../ScrollProgressBar';
+import UserManagementTable from './UserManagementTable';
 
 // Register ChartJS components
 ChartJS.register(
@@ -391,102 +392,6 @@ export default function AnalyticsDashboard() {
         </div>
       </div>
 
-      {/* Sessions Table */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  User
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Type
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  First Visit
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Last Visit
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Total Visits
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {sessions.map((session) => (
-                <tr
-                  key={session.id}
-                  className="hover:bg-gray-50 cursor-pointer"
-                  onClick={() => {
-                    setSelectedSession(session);
-                    loadSessionDetails(session.session_id);
-                  }}
-                >
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center gap-3">
-                      {session.user_photo ? (
-                        <img
-                          src={session.user_photo}
-                          alt={session.user_name}
-                          className="w-8 h-8 rounded-full"
-                        />
-                      ) : (
-                        <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
-                          <Users className="w-4 h-4 text-gray-600" />
-                        </div>
-                      )}
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">
-                          {session.user_name || 'Anonymous'}
-                        </div>
-                        {session.user_email && (
-                          <div className="text-xs text-gray-500">{session.user_email}</div>
-                        )}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span
-                      className={`px-2 py-1 text-xs font-medium rounded-full ${
-                        session.is_anonymous
-                          ? 'bg-gray-100 text-gray-800'
-                          : 'bg-green-100 text-green-800'
-                      }`}
-                    >
-                      {session.is_anonymous ? 'Anonymous' : 'Logged In'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {formatDate(session.first_visit)}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {formatDate(session.last_visit)}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {session.total_visits}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <button className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {sessions.length === 0 && (
-          <div className="text-center py-12 text-gray-500">
-            No sessions found for the selected filter.
-          </div>
-        )}
-      </div>
 
       {/* Session Details Modal */}
       {selectedSession && sessionDetails && (
@@ -576,10 +481,22 @@ export default function AnalyticsDashboard() {
                       switch (action.action_type) {
                         case 'download_paper':
                           return (
-                            <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                              </svg>
+                            <div className="p-2 bg-blue-100 rounded-lg">
+                              <img 
+                                src="/logos/paper.png" 
+                                alt="Download Paper" 
+                                className="h-5 w-5 object-contain"
+                              />
+                            </div>
+                          );
+                        case 'download_note':
+                          return (
+                            <div className="p-2 bg-purple-100 rounded-lg">
+                              <img 
+                                src="/logos/note.png" 
+                                alt="Download Note" 
+                                className="h-5 w-5 object-contain"
+                              />
                             </div>
                           );
                         case 'view_paper':
@@ -669,6 +586,17 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
       )}
+
+      {/* User Management Table */}
+      <div className="mt-8">
+        <UserManagementTable 
+          users={sessions}
+          onViewDetails={(sessionId) => {
+            setSelectedSession(sessionId);
+            loadSessionDetails(sessionId);
+          }}
+        />
+      </div>
 
       {/* Likes Section */}
       <div className="mt-8">
