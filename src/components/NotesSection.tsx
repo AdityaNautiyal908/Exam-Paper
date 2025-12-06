@@ -4,7 +4,6 @@ import { SubjectNote } from '../types';
 import { fetchNotesBySubject, downloadNote } from '../services/notesService';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useAnalytics } from '../hooks/useAnalytics';
-import { useUser } from '@clerk/clerk-react';
 
 interface NotesSectionProps {
   subject: string;
@@ -20,7 +19,6 @@ export default function NotesSection({ subject, semester, isAuthenticated, onDow
   const [downloadingNoteId, setDownloadingNoteId] = useState<string | null>(null);
   
   const { trackAction } = useAnalytics();
-  const { user } = useUser();
 
   useEffect(() => {
     if (isAuthenticated) {
