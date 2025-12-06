@@ -3,6 +3,8 @@ import { FileText, Eye } from 'lucide-react';
 import { SubjectNote } from '../types';
 import { fetchNotesBySubject, downloadNote } from '../services/notesService';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useAnalytics } from '../hooks/useAnalytics';
+import { useUser } from '@clerk/clerk-react';
 
 interface NotesSectionProps {
   subject: string;
@@ -16,6 +18,9 @@ export default function NotesSection({ subject, semester, isAuthenticated, onDow
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [downloadingNoteId, setDownloadingNoteId] = useState<string | null>(null);
+  
+  const { trackAction } = useAnalytics();
+  const { user } = useUser();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -43,6 +48,15 @@ export default function NotesSection({ subject, semester, isAuthenticated, onDow
     try {
       setDownloadingNoteId(note.id);
       await downloadNote(note.filePath, note.fileName);
+      
+      // Track the note download
+      trackAction('download_note', {
+        subject: note.subject,
+        fileName: note.fileName,
+        fileType: note.fileType,
+        semester: note.semester,
+        noteTitle: note.title
+      });
       
       // Show like dialog after successful download
       setTimeout(() => {
