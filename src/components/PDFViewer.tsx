@@ -5,6 +5,7 @@ import SubjectIcon from './SubjectIcon';
 import { getSafeFilePath } from '../utils/filePath';
 import { useAnalytics } from '../hooks/useAnalytics';
 import DownloadButton from './DownloadButton';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface PDFViewerProps {
   paper: QuestionPaper | null;
@@ -14,6 +15,7 @@ interface PDFViewerProps {
 export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
   const [activeFileId, setActiveFileId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const { trackAction } = useAnalytics();
 
@@ -98,6 +100,20 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
     return paper.files.findIndex((file) => file.id === activeFile.id);
   }, [paper, activeFile]);
 
+  // Handle download animation completion
+  useEffect(() => {
+    if (isDownloading && activeFile) {
+      // Wait for animation to complete (approximately 3 seconds)
+      const timer = setTimeout(() => {
+        const safeFilePath = getSafeFilePath(activeFile.filePath);
+        handleDownload(safeFilePath, activeFile.fileName);
+        setIsDownloading(false);
+      }, 3000); // Adjust timing based on animation duration
+
+      return () => clearTimeout(timer);
+    }
+  }, [isDownloading, activeFile]);
+
   const goToPrevious = () => {
     if (!paper || activeFileIndex <= 0) return;
     setActiveFileId(paper.files[activeFileIndex - 1].id);
@@ -144,7 +160,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           
           <div className="flex items-center gap-2 ml-4">
             <DownloadButton
-              onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
+              onClick={() => isMobile ? setIsDownloading(true) : handleDownload(safeFilePath, activeFile.fileName)}
               className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl"
               title="Download"
               size="sm"
@@ -244,6 +260,18 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
         ) : isMobile ? (
           // Mobile PDF fallback
           <div className="w-full h-full px-6 pb-8 flex flex-col items-center justify-center text-center gap-4 bg-gradient-to-b from-white to-lavender-50">
+            {/* Download Animation */}
+            {isDownloading && (
+              <div className="w-48 h-48 flex items-center justify-center">
+                <DotLottieReact
+                  src="https://lottie.host/cfecd50a-a8dc-4a44-ba6e-72bfd0114f01/euQHgw3oEJ.lottie"
+                  loop={false}
+                  autoplay
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+            )}
+            
             <p className="text-gray-600 text-sm">
               PDF preview is limited on mobile browsers. Tap below to open{' '}
               <span className="font-medium text-gray-800">{activeFile.label}</span> in your device&apos;s
@@ -258,10 +286,11 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
               Open PDF
             </a>
             <button
-              onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
+              onClick={() => setIsDownloading(true)}
               className="w-full max-w-xs btn-secondary text-center"
+              disabled={isDownloading}
             >
-              Download PDF
+              {isDownloading ? 'Preparing Download...' : 'Download PDF'}
             </button>
           </div>
         ) : (
