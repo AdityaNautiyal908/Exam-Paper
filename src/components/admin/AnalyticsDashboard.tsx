@@ -307,9 +307,6 @@ export default function AnalyticsDashboard() {
                   Total Visits
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Time Spent
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -366,9 +363,6 @@ export default function AnalyticsDashboard() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {session.total_visits}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {formatDuration(session.total_time_spent || 0)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
@@ -429,12 +423,6 @@ export default function AnalyticsDashboard() {
                     <span className="text-sm text-gray-600">Total Visits:</span>
                     <p className="text-sm font-medium text-gray-900">
                       {selectedSession.total_visits}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Total Time:</span>
-                    <p className="text-sm font-medium text-gray-900">
-                      {formatDuration(selectedSession.total_time_spent || 0)}
                     </p>
                   </div>
                 </div>
