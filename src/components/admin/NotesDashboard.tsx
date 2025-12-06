@@ -7,6 +7,7 @@ import { Semester, SubjectNote } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
 import { uploadNote, deleteNote, fetchNotesBySubject } from '../../services/notesService';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 
 
@@ -119,7 +120,18 @@ export default function NotesDashboard() {
   };
 
   const handleDelete = async (noteId: string) => {
-    if (!confirm('Are you sure you want to delete this note?')) return;
+    const result = await Swal.fire({
+      title: 'Delete Note?',
+      text: 'Are you sure you want to delete this note? This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4444',
+      cancelButtonColor: '#6B7280',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       await deleteNote(noteId);

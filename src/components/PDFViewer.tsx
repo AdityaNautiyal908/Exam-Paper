@@ -269,7 +269,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           </div>
         ) : isMobile ? (
           // Mobile PDF fallback
-          <div className="w-full h-full px-6 pb-8 flex flex-col items-center justify-center text-center gap-4 bg-gradient-to-b from-white to-lavender-50">
+          <div className="w-full h-full overflow-y-auto px-6 pb-8 flex flex-col items-center text-center gap-4 bg-gradient-to-b from-white to-lavender-50">
             {/* Download Animation */}
             {isDownloading && (
               <div className="w-48 h-48 flex items-center justify-center">
@@ -282,7 +282,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
               </div>
             )}
             
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-sm mt-4">
               PDF preview is limited on mobile browsers. Tap below to open{' '}
               <span className="font-medium text-gray-800">{activeFile.label}</span> in your device&apos;s
               viewer.
