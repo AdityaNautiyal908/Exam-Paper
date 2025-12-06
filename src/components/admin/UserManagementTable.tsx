@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { UserSession } from '../../services/analyticsService';
-import { User, UserX } from 'lucide-react';
+import { User, UserX, Clock } from 'lucide-react';
 
 interface UserManagementTableProps {
   users: UserSession[];
@@ -10,19 +10,45 @@ interface UserManagementTableProps {
 export default function UserManagementTable({ users, onViewDetails }: UserManagementTableProps) {
   const [sortBy, setSortBy] = useState<'lastVisit' | 'totalVisits' | 'firstVisit'>('lastVisit');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [timeFilter, setTimeFilter] = useState<'all' | '24h' | '7d'>('all');
+
 
   const formatDateTime = (dateString: string) => {
-    return new Date(dateString).toLocaleString('en-IN', {
+    // Ensure timestamp is treated as UTC by appending Z if not present
+    const utcString = dateString.includes('Z') || dateString.includes('+') ? dateString : dateString + 'Z';
+    const date = new Date(utcString);
+    
+    return date.toLocaleString('en-IN', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
-      hour12: true
+      hour12: true,
+      timeZone: 'Asia/Kolkata'
     });
   };
 
-  const sortedUsers = [...users].sort((a, b) => {
+
+
+  const isRecent = (lastVisit: string, hours: number) => {
+    const visitTime = new Date(lastVisit).getTime();
+    const now = Date.now();
+    const hoursInMs = hours * 60 * 60 * 1000;
+    return (now - visitTime) <= hoursInMs;
+  };
+
+  // Filter users based on time period
+  const filteredUsers = users.filter(user => {
+    if (timeFilter === '24h') {
+      return isRecent(user.last_visit, 24);
+    } else if (timeFilter === '7d') {
+      return isRecent(user.last_visit, 24 * 7);
+    }
+    return true; // 'all'
+  });
+
+  const sortedUsers = [...filteredUsers].sort((a, b) => {
     let comparison = 0;
     
     switch (sortBy) {
@@ -43,8 +69,49 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-200">
-        <h2 className="text-xl font-bold text-gray-900">All Users</h2>
-        <p className="text-sm text-gray-600 mt-1">Manage and view user activity</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">All Users</h2>
+            <p className="text-sm text-gray-600 mt-1">
+              Manage and view user activity • Showing {sortedUsers.length} of {users.length} users
+            </p>
+          </div>
+          
+          {/* Time Filter Buttons */}
+          <div className="flex items-center gap-2">
+            <Clock className="h-4 w-4 text-gray-500" />
+            <button
+              onClick={() => setTimeFilter('all')}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                timeFilter === 'all'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              All Time
+            </button>
+            <button
+              onClick={() => setTimeFilter('7d')}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                timeFilter === '7d'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Last 7 Days
+            </button>
+            <button
+              onClick={() => setTimeFilter('24h')}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                timeFilter === '24h'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Last 24 Hours
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="overflow-x-auto">
@@ -136,13 +203,21 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                    user.is_anonymous 
-                      ? 'bg-gray-100 text-gray-800' 
-                      : 'bg-green-100 text-green-800'
-                  }`}>
-                    {user.is_anonymous ? 'Anonymous' : 'Logged In'}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                      user.is_anonymous 
+                        ? 'bg-gray-100 text-gray-800' 
+                        : 'bg-green-100 text-green-800'
+                    }`}>
+                      {user.is_anonymous ? 'Anonymous' : 'Logged In'}
+                    </span>
+                    {isRecent(user.last_visit, 24) && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">
+                        <Clock className="h-3 w-3" />
+                        Recent
+                      </span>
+                    )}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                   {formatDateTime(user.first_visit)}
