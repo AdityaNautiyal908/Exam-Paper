@@ -3,24 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { BookOpen, CheckCircle, AlertCircle, Loader2, ArrowLeft, Upload, Trash2 } from 'lucide-react';
 import subjectsConfig from '../../data/subjects.config.json';
-import { Semester } from '../../types';
+import { Semester, SubjectNote } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
 import { uploadNote, deleteNote, fetchNotesBySubject } from '../../services/notesService';
 import { useEffect } from 'react';
 
-interface Note {
-  id: string;
-  subject: string;
-  semester: number;
-  title: string;
-  file_path: string;
-  file_name: string;
-  file_size: number;
-  file_type: string;
-  uploaded_by: string;
-  created_at: string;
-  updated_at: string;
-}
+
 
 export default function NotesDashboard() {
   const { user } = useUser();
@@ -33,7 +21,7 @@ export default function NotesDashboard() {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<SubjectNote[]>([]);
   const [loadingNotes, setLoadingNotes] = useState(false);
 
   // Filter subjects based on selected semester
@@ -338,10 +326,10 @@ export default function NotesDashboard() {
                   className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-green-300 transition-all"
                 >
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-gray-900 truncate">{note.title}</h4>
-                    <p className="text-sm text-gray-600 truncate">{note.file_name}</p>
+                    <h4 className="font-semibold text-sm md:text-base text-gray-900 truncate">{note.title}</h4>
+                    <p className="text-xs md:text-sm text-gray-600 truncate">{note.fileName}</p>
                     <p className="text-xs text-gray-500 mt-1">
-                      {formatFileSize(note.file_size)} • {new Date(note.created_at).toLocaleDateString()}
+                      {formatFileSize(note.fileSize)} • {new Date(note.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                   <button
