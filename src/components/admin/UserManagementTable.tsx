@@ -68,8 +68,8 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
 
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-      <div className="px-6 py-4 border-b border-gray-200">
-        <div className="flex items-center justify-between">
+      <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-bold text-gray-900">All Users</h2>
             <p className="text-sm text-gray-600 mt-1">
@@ -78,11 +78,11 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
           </div>
           
           {/* Time Filter Buttons */}
-          <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-gray-500" />
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0">
+            <Clock className="h-4 w-4 text-gray-500 flex-shrink-0" />
             <button
               onClick={() => setTimeFilter('all')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                 timeFilter === 'all'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -92,7 +92,7 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
             </button>
             <button
               onClick={() => setTimeFilter('7d')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                 timeFilter === '7d'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -102,7 +102,7 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
             </button>
             <button
               onClick={() => setTimeFilter('24h')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                 timeFilter === '24h'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -115,7 +115,7 @@ export default function UserManagementTable({ users, onViewDetails }: UserManage
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full min-w-[800px]">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
