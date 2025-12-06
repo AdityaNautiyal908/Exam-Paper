@@ -1,9 +1,10 @@
-import { X, Download, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { QuestionPaper } from '../types';
 import { useEffect, useMemo, useState } from 'react';
 import SubjectIcon from './SubjectIcon';
 import { getSafeFilePath } from '../utils/filePath';
 import { useAnalytics } from '../hooks/useAnalytics';
+import DownloadButton from './DownloadButton';
 
 interface PDFViewerProps {
   paper: QuestionPaper | null;
@@ -142,13 +143,12 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
           </div>
           
           <div className="flex items-center gap-2 ml-4">
-            <button
+            <DownloadButton
               onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
-              className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl flex items-center justify-center transition-all hover:scale-110"
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl"
               title="Download"
-            >
-              <Download className="w-5 h-5" />
-            </button>
+              size="sm"
+            />
             
             <a
               href={safeFilePath}
@@ -257,12 +257,15 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
             >
               Open PDF
             </a>
-            <button
-              onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
-              className="w-full max-w-xs btn-secondary text-center"
-            >
-              Download PDF
-            </button>
+            <div className="flex flex-col items-center gap-2">
+              <DownloadButton
+                onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
+                className="bg-indigo-100 hover:bg-indigo-200 rounded-xl"
+                title="Download PDF"
+                size="lg"
+              />
+              <span className="text-sm font-medium text-gray-700">Download PDF</span>
+            </div>
           </div>
         ) : (
           // Desktop PDF viewer

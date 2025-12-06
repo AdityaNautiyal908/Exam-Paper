@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",
+    "@lottiefiles/dotlottie-react": "^0.17.8",
     "@supabase/supabase-js": "^2.86.0",
     "@types/canvas-confetti": "^1.9.0",
     "@types/chart.js": "^2.9.41",

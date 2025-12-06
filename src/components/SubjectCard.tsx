@@ -1,7 +1,8 @@
-import { FileText, Download, ArrowRight } from 'lucide-react';
+import { FileText, ArrowRight } from 'lucide-react';
 import { QuestionPaper } from '../types';
 import SubjectIcon from './SubjectIcon';
 import { getSafeFilePath } from '../utils/filePath';
+import DownloadButton from './DownloadButton';
 
 interface SubjectCardProps {
   paper: QuestionPaper;
@@ -72,15 +73,14 @@ export default function SubjectCard({ paper, onClick, index }: SubjectCardProps)
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
           
-          <a
+          <DownloadButton
             href={getSafeFilePath(paper.files[0].filePath)}
             download
             onClick={(e) => e.stopPropagation()}
-            className="w-10 h-10 bg-gray-100 hover:bg-indigo-100 rounded-lg flex items-center justify-center transition-all hover:scale-110 group"
+            className="bg-gray-100 hover:bg-indigo-100 rounded-lg"
             title="Download PDF"
-          >
-            <Download className="w-4 h-4 text-gray-600 group-hover:text-indigo-600 transition-colors" />
-          </a>
+            size="sm"
+          />
         </div>
       </div>
     </div>
