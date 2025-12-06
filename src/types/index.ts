@@ -57,3 +57,17 @@ export interface QuestionPaper {
 }
 
 export type FilterCategory = 'All' | 'Programming' | 'Database' | 'Web' | 'Core' | 'Advanced';
+
+export interface SubjectNote {
+  id: string;
+  subject: string;
+  semester: number;
+  title: string;
+  filePath: string;
+  fileName: string;
+  fileSize: number;
+  fileType: 'pdf' | 'image';
+  uploadedBy: string;
+  createdAt: string;
+  updatedAt: string;
+}

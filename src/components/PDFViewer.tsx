@@ -6,6 +6,9 @@ import { getSafeFilePath } from '../utils/filePath';
 import { useAnalytics } from '../hooks/useAnalytics';
 import DownloadButton from './DownloadButton';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useUser } from '@clerk/clerk-react';
+import NotesSection from './NotesSection';
+import LikeDialog from './LikeDialog';
 
 interface PDFViewerProps {
   paper: QuestionPaper | null;
@@ -16,8 +19,10 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
   const [activeFileId, setActiveFileId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [showLikeDialog, setShowLikeDialog] = useState(false);
 
   const { trackAction } = useAnalytics();
+  const { isSignedIn } = useUser();
 
   // Function to force download instead of opening in browser
   const handleDownload = async (url: string, filename: string) => {
@@ -47,6 +52,11 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
       
       // Clean up the blob URL
       window.URL.revokeObjectURL(blobUrl);
+      
+      // Show like dialog after successful download
+      setTimeout(() => {
+        setShowLikeDialog(true);
+      }, 500);
     } catch (error) {
       console.error('Download failed:', error);
       // Track failed download attempt
@@ -292,18 +302,44 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
             >
               {isDownloading ? 'Preparing Download...' : 'Download PDF'}
             </button>
+            
+            {/* Notes Section */}
+            <div className="w-full max-w-2xl mt-6">
+              <NotesSection
+                subject={paper.subject}
+                semester={paper.semester}
+                isAuthenticated={isSignedIn || false}
+              />
+            </div>
           </div>
         ) : (
-          // Desktop PDF viewer
-          <div className="w-full h-full">
-            <iframe
-              src={safeFilePath}
-              className="w-full h-full border-0"
-              title={`${paper.subject} - ${activeFile.label}`}
-            />
+          // Desktop PDF viewer with notes
+          <div className="w-full h-full overflow-y-auto">
+            <div className="min-h-full">
+              <iframe
+                src={safeFilePath}
+                className="w-full h-[70vh] border-0"
+                title={`${paper.subject} - ${activeFile.label}`}
+              />
+              
+              {/* Notes Section for Desktop */}
+              <div className="px-6 pb-6">
+                <NotesSection
+                  subject={paper.subject}
+                  semester={paper.semester}
+                  isAuthenticated={isSignedIn || false}
+                />
+              </div>
+            </div>
           </div>
         )}
       </div>
+      
+      {/* Like Dialog */}
+      <LikeDialog 
+        isOpen={showLikeDialog} 
+        onClose={() => setShowLikeDialog(false)} 
+      />
     </div>
   );
 }

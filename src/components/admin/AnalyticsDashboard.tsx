@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnalyticsService } from '../../services/analyticsService';
-import { Users, Eye, MousePointerClick, Clock, UserCheck, UserX, ArrowLeft, PieChart as PieChartIcon } from 'lucide-react';
+import { Users, Eye, MousePointerClick, Clock, UserCheck, UserX, ArrowLeft, PieChart as PieChartIcon, Heart } from 'lucide-react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import LikesViewer from './LikesViewer';
+import { getLikeStats } from '../../services/likesService';
 
 // Register ChartJS components
 ChartJS.register(
@@ -29,6 +31,8 @@ export default function AnalyticsDashboard() {
   const [filter, setFilter] = useState<'all' | 'anonymous' | 'logged-in'>('all');
   const [selectedSession, setSelectedSession] = useState<any>(null);
   const [sessionDetails, setSessionDetails] = useState<any>(null);
+  const [likeStats, setLikeStats] = useState({ total: 0, authenticated: 0, anonymous: 0 });
+  
   useEffect(() => {
     loadAnalytics();
   }, [filter]);
@@ -36,16 +40,18 @@ export default function AnalyticsDashboard() {
   const loadAnalytics = async () => {
     setLoading(true);
     try {
-      const [overviewData, sessionsData] = await Promise.all([
+      const [overviewData, sessionsData, likeStatsData] = await Promise.all([
         AnalyticsService.getAnalyticsOverview(),
         AnalyticsService.getAllSessions({
           isAnonymous: filter === 'anonymous' ? true : filter === 'logged-in' ? false : undefined,
           limit: 50,
-        })
+        }),
+        getLikeStats()
       ]);
 
       setOverview(overviewData);
       setSessions(sessionsData?.data || []);
+      setLikeStats(likeStatsData);
     } catch (error) {
       console.error('Error loading analytics:', error);
     } finally {
@@ -242,6 +248,103 @@ export default function AnalyticsDashboard() {
             <div className="bg-indigo-50 p-3 rounded-lg">
               <p className="text-xs text-indigo-700">
                 This chart shows the distribution between anonymous and logged-in users. Hover over the chart segments to see percentages.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Like Distribution Pie Chart */}
+      <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Heart className="w-5 h-5 text-pink-600" />
+          <h2 className="text-lg font-semibold text-gray-800">Like Distribution</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div className="h-64 md:h-80">
+            {overview && (
+              <Pie 
+                data={{
+                  labels: ['Users Who Liked', 'Users Who Didn\'t Like'],
+                  datasets: [{
+                    data: [
+                      likeStats.total,
+                      Math.max(0, (overview.anonymousUsers + overview.loggedInUsers) - likeStats.total)
+                    ],
+                    backgroundColor: [
+                      'rgba(236, 72, 153, 0.7)',  // Pink for liked
+                      'rgba(156, 163, 175, 0.7)',  // Gray for didn't like
+                    ],
+                    borderColor: [
+                      'rgba(236, 72, 153, 1)',
+                      'rgba(156, 163, 175, 1)',
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 10,
+                  }],
+                }}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: {
+                      position: 'right',
+                      labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                      },
+                    },
+                    tooltip: {
+                      callbacks: {
+                        label: function(context) {
+                          const label = context.label || '';
+                          const value = context.raw as number || 0;
+                          const data = context.dataset.data as number[];
+                          const total = data.reduce((a: number, b: number) => a + b, 0);
+                          const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                          return `${label}: ${value} (${percentage}%)`;
+                        }
+                      }
+                    }
+                  },
+                }}
+              />
+            )}
+          </div>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-medium text-gray-700 mb-2">Like Statistics</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-pink-500"></div>
+                    <span className="text-sm text-gray-600">Users Who Liked</span>
+                  </div>
+                  <span className="text-sm font-medium">{likeStats.total}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-gray-400"></div>
+                    <span className="text-sm text-gray-600">Users Who Didn't Like</span>
+                  </div>
+                  <span className="text-sm font-medium">
+                    {Math.max(0, (overview?.anonymousUsers || 0) + (overview?.loggedInUsers || 0) - likeStats.total)}
+                  </span>
+                </div>
+                <div className="pt-2 mt-2 border-t border-gray-100">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-700">Total Users</span>
+                    <span className="text-sm font-semibold">
+                      {(overview?.anonymousUsers || 0) + (overview?.loggedInUsers || 0)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-pink-50 p-3 rounded-lg">
+              <p className="text-xs text-pink-700">
+                This chart shows how many users liked your website. Hover over the chart segments to see percentages.
               </p>
             </div>
           </div>
@@ -563,6 +666,11 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
       )}
+
+      {/* Likes Section */}
+      <div className="mt-8">
+        <LikesViewer />
+      </div>
     </div>
   );
 }
