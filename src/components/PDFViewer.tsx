@@ -318,12 +318,12 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
             <div className="min-h-full">
               <iframe
                 src={safeFilePath}
-                className="w-full h-[70vh] border-0"
+                className="w-full h-[50vh] border-0"
                 title={`${paper.subject} - ${activeFile.label}`}
               />
               
               {/* Notes Section for Desktop */}
-              <div className="px-6 pb-6">
+              <div className="px-6 pb-12">
                 <NotesSection
                   subject={paper.subject}
                   semester={paper.semester}

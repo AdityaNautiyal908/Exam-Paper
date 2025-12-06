@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FileText } from 'lucide-react';
+import { FileText, Eye } from 'lucide-react';
 import { SubjectNote } from '../types';
 import { fetchNotesBySubject, downloadNote } from '../services/notesService';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
@@ -137,20 +137,32 @@ export default function NotesSection({ subject, semester, isAuthenticated }: Not
                 </div>
               </div>
               
-              <button
-                onClick={() => handleDownload(note)}
-                className="ml-4 w-12 h-12 bg-indigo-100 hover:bg-indigo-200 rounded-xl flex items-center justify-center transition-all hover:scale-110 group"
-                title="Download Note"
-              >
-                <div className="w-6 h-6">
-                  <DotLottieReact
-                    src="https://lottie.host/a96bf700-12b7-48e6-8234-01699667e118/tCeh1QTY7j.lottie"
-                    loop
-                    autoplay
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                </div>
-              </button>
+              <div className="flex items-center gap-2">
+                {/* View Button */}
+                <button
+                  onClick={() => window.open(note.filePath, '_blank')}
+                  className="w-12 h-12 bg-blue-100 hover:bg-blue-200 rounded-xl flex items-center justify-center transition-all hover:scale-110"
+                  title="View Note"
+                >
+                  <Eye className="w-5 h-5 text-blue-600" />
+                </button>
+                
+                {/* Download Button */}
+                <button
+                  onClick={() => handleDownload(note)}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110 group"
+                  title="Download Note"
+                >
+                  <div className="w-8 h-8">
+                    <DotLottieReact
+                      src="https://lottie.host/a96bf700-12b7-48e6-8234-01699667e118/tCeh1QTY7j.lottie"
+                      loop
+                      autoplay
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         ))}

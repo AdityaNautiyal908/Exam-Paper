@@ -239,14 +239,14 @@ export default function NotesDashboard() {
           {/* File Upload */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              File (PDF or Image)
+              File (PDF, Image, Word, or PowerPoint)
             </label>
             <div className="relative">
               <input
                 id="note-file-upload"
                 type="file"
                 onChange={handleFileChange}
-                accept=".pdf,.jpg,.jpeg,.png"
+                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.ppt,.pptx"
                 className="hidden"
               />
               <label
@@ -258,7 +258,7 @@ export default function NotesDashboard() {
                   {file ? file.name : 'Click to upload or drag and drop'}
                 </span>
                 <span className="text-xs text-gray-500 mt-1">
-                  PDF, JPG, or PNG files only
+                  PDF, JPG, PNG, Word (DOC/DOCX), or PowerPoint (PPT/PPTX)
                 </span>
               </label>
             </div>
