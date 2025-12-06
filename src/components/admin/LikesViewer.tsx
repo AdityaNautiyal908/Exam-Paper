@@ -116,7 +116,7 @@ export default function LikesViewer() {
             <p className="text-gray-500">No likes yet. Keep sharing your website!</p>
           </div>
         ) : (
-          <div className="space-y-3 max-h-[500px] overflow-y-auto">
+          <div className="space-y-3 max-h-[500px] overflow-y-auto overflow-x-hidden">
             {likes.map((like) => (
               <div
                 key={like.id}
