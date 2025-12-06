@@ -1,8 +1,9 @@
-import { FileText, ArrowRight } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { QuestionPaper } from '../types';
 import SubjectIcon from './SubjectIcon';
 import { getSafeFilePath } from '../utils/filePath';
 import DownloadButton from './DownloadButton';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface SubjectCardProps {
   paper: QuestionPaper;
@@ -70,7 +71,14 @@ export default function SubjectCard({ paper, onClick, index }: SubjectCardProps)
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
           <button className="flex items-center gap-2 text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">
             <span>View Papers</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="w-8 h-8">
+              <DotLottieReact
+                src="https://lottie.host/2a34899c-8dd0-4c17-aac7-5f0a73dfc27c/jmYl6CjYWd.lottie"
+                loop
+                autoplay
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
           </button>
           
           <DownloadButton
