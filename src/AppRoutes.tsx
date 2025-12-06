@@ -10,6 +10,7 @@ const Home = lazy(() => import('./App'));
 const SignInPage = lazy(() => import('./components/auth/SignInPage'));
 const AdminDashboard = lazy(() => import('./components/admin/AdminDashboard'));
 const AnalyticsDashboard = lazy(() => import('./components/admin/AnalyticsDashboard'));
+const NotesDashboard = lazy(() => import('./components/admin/NotesDashboard'));
 
 const AppRoutes = () => {
   const { isLoaded, isSignedIn } = useUser();
@@ -48,6 +49,14 @@ const AppRoutes = () => {
               element={
                 <AdminProtectedRoute>
                   <AnalyticsDashboard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/notes"
+              element={
+                <AdminProtectedRoute>
+                  <NotesDashboard />
                 </AdminProtectedRoute>
               }
             />

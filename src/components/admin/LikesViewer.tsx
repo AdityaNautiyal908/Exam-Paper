@@ -67,8 +67,8 @@ export default function LikesViewer() {
   return (
     <div className="space-y-6">
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl p-6 text-white">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl p-6 text-white cursor-pointer transition-all hover:shadow-lg hover:scale-105 active:scale-95">
           <div className="flex items-center justify-between mb-2">
             <Heart className="w-8 h-8" />
             <span className="text-3xl font-bold">{stats.total}</span>
@@ -76,7 +76,7 @@ export default function LikesViewer() {
           <p className="text-pink-100 text-sm font-medium">Total Likes</p>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl p-6 text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl p-6 text-white cursor-pointer transition-all hover:shadow-lg hover:scale-105 active:scale-95">
           <div className="flex items-center justify-between mb-2">
             <User className="w-8 h-8" />
             <span className="text-3xl font-bold">{stats.authenticated}</span>
@@ -84,7 +84,7 @@ export default function LikesViewer() {
           <p className="text-indigo-100 text-sm font-medium">Logged In Users</p>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl p-6 text-white">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl p-6 text-white cursor-pointer transition-all hover:shadow-lg hover:scale-105 active:scale-95">
           <div className="flex items-center justify-between mb-2">
             <UserX className="w-8 h-8" />
             <span className="text-3xl font-bold">{stats.anonymous}</span>
@@ -120,36 +120,36 @@ export default function LikesViewer() {
             {likes.map((like) => (
               <div
                 key={like.id}
-                className="p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-pink-300 transition-all"
+                className="p-3 md:p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-pink-300 transition-all cursor-pointer hover:shadow-md hover:scale-[1.02] active:scale-[0.98] active:shadow-sm"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-3 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0">
                     {/* User Icon */}
-                    <div className={`p-2 rounded-lg ${
+                    <div className={`p-1.5 md:p-2 rounded-lg flex-shrink-0 ${
                       like.is_anonymous ? 'bg-gray-200' : 'bg-indigo-100'
                     }`}>
                       {like.is_anonymous ? (
-                        <UserX className="w-5 h-5 text-gray-600" />
+                        <UserX className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
                       ) : (
-                        <User className="w-5 h-5 text-indigo-600" />
+                        <User className="w-4 h-4 md:w-5 md:h-5 text-indigo-600" />
                       )}
                     </div>
 
                     {/* User Info */}
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-900 truncate">
+                      <h4 className="font-semibold text-sm md:text-base text-gray-900 truncate">
                         {like.user_name || 'Anonymous User'}
                       </h4>
                       {like.user_email && (
-                        <p className="text-sm text-gray-600 truncate">{like.user_email}</p>
+                        <p className="text-xs md:text-sm text-gray-600 truncate">{like.user_email}</p>
                       )}
-                      <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-1.5 md:mt-2 text-xs text-gray-500">
                         <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {formatDate(like.liked_at)}
+                          <Calendar className="w-3 h-3 flex-shrink-0" />
+                          <span className="truncate">{formatDate(like.liked_at)}</span>
                         </span>
                         <span className="flex items-center gap-1">
-                          <Monitor className="w-3 h-3" />
+                          <Monitor className="w-3 h-3 flex-shrink-0" />
                           {getBrowserInfo(like.device_info)}
                         </span>
                       </div>
@@ -157,8 +157,8 @@ export default function LikesViewer() {
                   </div>
 
                   {/* Like Badge */}
-                  <div className="ml-4">
-                    <Heart className="w-6 h-6 fill-pink-500 text-pink-500" />
+                  <div className="ml-2 flex-shrink-0">
+                    <Heart className="w-5 h-5 md:w-6 md:h-6 fill-pink-500 text-pink-500" />
                   </div>
                 </div>
               </div>

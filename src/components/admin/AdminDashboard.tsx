@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
-import { Upload, CheckCircle, AlertCircle, FileText, Loader2, ArrowLeft } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, FileText, Loader2, ArrowLeft, BookOpen } from 'lucide-react';
 import subjectsConfig from '../../data/subjects.config.json';
 import { Semester, PaperType } from '../../types';
 import { useIsAdmin } from '../../utils/auth';
@@ -15,6 +15,7 @@ export default function AdminDashboard() {
   const { isAdmin, isLoading } = useIsAdmin();
   const navigate = useNavigate();
   const [isNavigatingToAnalytics, setIsNavigatingToAnalytics] = useState(false);
+  const [isNavigatingToNotes, setIsNavigatingToNotes] = useState(false);
   const [semester, setSemester] = useState<Semester>(1);
   const [paperType, setPaperType] = useState<PaperType>('final');
   const [subjectId, setSubjectId] = useState(subjectsConfig[0].id);
@@ -186,6 +187,35 @@ export default function AdminDashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
                 <span>View Analytics</span>
+              </>
+            )}
+          </button>
+          
+          {/* Upload Notes Button */}
+          <button
+            onClick={() => {
+              setIsNavigatingToNotes(true);
+              setTimeout(() => {
+                navigate('/admin/notes');
+              }, 1500);
+            }}
+            disabled={isNavigatingToNotes}
+            className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-white font-medium transition-all ${
+              isNavigatingToNotes
+                ? 'bg-green-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:shadow-lg hover:-translate-y-0.5'
+            } w-full md:w-auto`}
+          >
+            {isNavigatingToNotes ? (
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              </div>
+            ) : (
+              <>
+                <BookOpen className="w-5 h-5" />
+                <span>Upload Notes</span>
               </>
             )}
           </button>
