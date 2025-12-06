@@ -309,6 +309,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
                 subject={paper.subject}
                 semester={paper.semester}
                 isAuthenticated={isSignedIn || false}
+                onDownloadComplete={() => setShowLikeDialog(true)}
               />
             </div>
           </div>
@@ -328,6 +329,7 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
                   subject={paper.subject}
                   semester={paper.semester}
                   isAuthenticated={isSignedIn || false}
+                  onDownloadComplete={() => setShowLikeDialog(true)}
                 />
               </div>
             </div>

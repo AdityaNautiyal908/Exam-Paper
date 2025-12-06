@@ -8,12 +8,14 @@ interface NotesSectionProps {
   subject: string;
   semester: number;
   isAuthenticated: boolean;
+  onDownloadComplete?: () => void; // Callback to show like dialog
 }
 
-export default function NotesSection({ subject, semester, isAuthenticated }: NotesSectionProps) {
+export default function NotesSection({ subject, semester, isAuthenticated, onDownloadComplete }: NotesSectionProps) {
   const [notes, setNotes] = useState<SubjectNote[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [downloadingNoteId, setDownloadingNoteId] = useState<string | null>(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -39,9 +41,19 @@ export default function NotesSection({ subject, semester, isAuthenticated }: Not
 
   const handleDownload = async (note: SubjectNote) => {
     try {
+      setDownloadingNoteId(note.id);
       await downloadNote(note.filePath, note.fileName);
+      
+      // Show like dialog after successful download
+      setTimeout(() => {
+        setDownloadingNoteId(null);
+        if (onDownloadComplete) {
+          onDownloadComplete();
+        }
+      }, 1000);
     } catch (err) {
       console.error('Error downloading note:', err);
+      setDownloadingNoteId(null);
     }
   };
 
@@ -152,15 +164,27 @@ export default function NotesSection({ subject, semester, isAuthenticated }: Not
                   onClick={() => handleDownload(note)}
                   className="w-12 h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110 group"
                   title="Download Note"
+                  disabled={downloadingNoteId === note.id}
                 >
-                  <div className="w-8 h-8">
-                    <DotLottieReact
-                      src="https://lottie.host/a96bf700-12b7-48e6-8234-01699667e118/tCeh1QTY7j.lottie"
-                      loop
-                      autoplay
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                  </div>
+                  {downloadingNoteId === note.id ? (
+                    <div className="w-12 h-12">
+                      <DotLottieReact
+                        src="https://lottie.host/cfecd50a-a8dc-4a44-ba6e-72bfd0114f01/euQHgw3oEJ.lottie"
+                        loop={false}
+                        autoplay
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8">
+                      <DotLottieReact
+                        src="https://lottie.host/a96bf700-12b7-48e6-8234-01699667e118/tCeh1QTY7j.lottie"
+                        loop
+                        autoplay
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    </div>
+                  )}
                 </button>
               </div>
             </div>
