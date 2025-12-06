@@ -257,15 +257,12 @@ export default function PDFViewer({ paper, onClose }: PDFViewerProps) {
             >
               Open PDF
             </a>
-            <div className="flex flex-col items-center gap-2">
-              <DownloadButton
-                onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
-                className="bg-indigo-100 hover:bg-indigo-200 rounded-xl"
-                title="Download PDF"
-                size="lg"
-              />
-              <span className="text-sm font-medium text-gray-700">Download PDF</span>
-            </div>
+            <button
+              onClick={() => handleDownload(safeFilePath, activeFile.fileName)}
+              className="w-full max-w-xs btn-secondary text-center"
+            >
+              Download PDF
+            </button>
           </div>
         ) : (
           // Desktop PDF viewer
